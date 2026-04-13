@@ -4,18 +4,15 @@ set -euo pipefail
 # =============================================
 # JAKAMO Landing — Deploy Script (rsync + SSH)
 # =============================================
-# Użycie: ./deploy/deploy.sh [--first-run]
-#
-# Przed pierwszym użyciem:
-#   1. Ustaw SSH_HOST poniżej
-#   2. Upewnij się że klucz SSH jest dodany do Hostingera
-#   3. Uruchom z flagą --first-run dla pierwszego wdrożenia
+# Użycie: ./deploy/deploy.sh
 
-SSH_HOST="u547469942@YOUR_HOST.hostinger.com"   # <-- zmień na właściwy hostname
-REMOTE_APP="/domains/jakamo.pl/jakamo_landing"
-REMOTE_WEB="/domains/jakamo.pl/public_html/landing"
+SSH_ALIAS="hostinger-serwer"   # alias z ~/.ssh/config
+SSH_PORT="65002"
+SSH_USER="u547469942"
+SSH_HOST="92.113.19.229"
+REMOTE_APP="~/domains/jakamo.pl/jakamo_landing"
 BRANCH="main"
-PHP="php8.2"
+PHP="/opt/alt/php84/usr/bin/php"
 COMPOSER="/usr/local/bin/composer"
 
 echo "═══════════════════════════════════════"
@@ -31,14 +28,15 @@ fi
 echo "=> [1/5] Pull latest from GitHub..."
 git pull origin "$BRANCH"
 
-echo "=> [2/5] Install Composer deps (no-dev)..."
-composer install --no-dev --optimize-autoloader --no-interaction --quiet
-
-echo "=> [3/5] Build frontend assets (Vite)..."
+echo "=> [2/5] Build frontend assets (Vite)..."
 npm run build
+
+echo "=> [3/5] Install Composer deps (no-dev)..."
+composer install --no-dev --optimize-autoloader --no-interaction --quiet
 
 echo "=> [4/5] Sync files to Hostinger (rsync)..."
 rsync -avz --delete \
+    -e "ssh -p ${SSH_PORT}" \
     --exclude='.env' \
     --exclude='.git' \
     --exclude='node_modules' \
@@ -49,35 +47,23 @@ rsync -avz --delete \
     --exclude='tests' \
     --exclude='deploy' \
     --exclude='jakamo-landing.html' \
-    ./ "${SSH_HOST}:${REMOTE_APP}/"
+    ./ "${SSH_USER}@${SSH_HOST}:${REMOTE_APP}/"
 
 echo "=> [5/5] Remote: migrate + cache..."
-ssh "$SSH_HOST" bash << REMOTE
+ssh "$SSH_ALIAS" bash << REMOTE
     set -e
-    cd "$REMOTE_APP"
+    cd ~/domains/jakamo.pl/jakamo_landing
 
-    # Uprawnienia
     chmod -R 775 storage bootstrap/cache
 
-    # Migracje
     $PHP artisan migrate --force
 
-    # Cache produkcyjny
     $PHP artisan config:cache
     $PHP artisan route:cache
     $PHP artisan view:cache
 
     echo "=> Remote done."
 REMOTE
-
-# Pierwsze uruchomienie: utwórz pliki w public_html/landing/
-if [[ "${1:-}" == "--first-run" ]]; then
-    echo "=> [FIRST_RUN] Setting up public_html/landing/..."
-    ssh "$SSH_HOST" bash << SETUP
-        mkdir -p "$REMOTE_WEB"
-        echo "Pliki index.php i .htaccess wgraj ręcznie z katalogu deploy/"
-SETUP
-fi
 
 echo ""
 echo "═══════════════════════════════════════"
