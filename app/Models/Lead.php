@@ -15,6 +15,7 @@ class Lead extends Model
         'message',
         'consent',
         'ip_address',
+        'excel_file',
     ];
 
     protected $casts = [

@@ -42,7 +42,7 @@
         </div>
       @else
         <!-- Form -->
-        <form action="{{ route('contact.submit') }}" method="POST" class="space-y-6">
+        <form action="{{ route('contact.submit') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
           @csrf
 
           <div class="grid md:grid-cols-2 gap-6">
@@ -116,6 +116,38 @@
               <option {{ old('use_case') == 'Coś innego' ? 'selected' : '' }}>Coś innego</option>
             </select>
             @error('use_case')
+              <p class="text-[10px] text-orange-400 font-label uppercase tracking-widest">{{ $message }}</p>
+            @enderror
+          </div>
+
+          <!-- Excel upload -->
+          <div class="space-y-2">
+            <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">PLIK_EXCEL // OPCJONALNIE</label>
+            <div class="border border-dashed border-primary/20 hover:border-primary/50 transition-colors bg-surface-container-lowest px-4 py-5 relative">
+              <input
+                name="excel_file"
+                type="file"
+                accept=".xlsx,.xls,.csv"
+                class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                id="excel-upload"
+              />
+              <div class="flex items-center gap-4 pointer-events-none">
+                <div class="w-10 h-10 border border-primary/30 flex items-center justify-center flex-shrink-0">
+                  <svg width="18" height="18" fill="none" stroke="#00d4ff" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                    <line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/>
+                  </svg>
+                </div>
+                <div>
+                  <div id="file-label" class="text-sm text-on-surface-variant">Przeciągnij plik lub <span class="text-primary">kliknij aby wybrać</span></div>
+                  <div class="text-[10px] font-label uppercase tracking-[0.15em] text-on-surface-variant/60 mt-1">
+                    .xlsx / .xls / .csv &nbsp;·&nbsp; max 10 MB &nbsp;·&nbsp;
+                    <span class="text-orange-400">tylko struktura — usuń dane przed wysłaniem</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @error('excel_file')
               <p class="text-[10px] text-orange-400 font-label uppercase tracking-widest">{{ $message }}</p>
             @enderror
           </div>
