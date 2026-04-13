@@ -33,10 +33,10 @@
       <div>
         <div class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant mb-3">MODUŁY</div>
         <ul class="space-y-2">
-          <li class="text-xs text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Magazyn</li>
-          <li class="text-xs text-on-surface-variant hover:text-primary transition-colors cursor-pointer">CRM</li>
-          <li class="text-xs text-on-surface-variant hover:text-primary transition-colors cursor-pointer">System Zleceń</li>
-          <li class="text-xs text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Custom</li>
+          <li><a href="/#modules" class="text-xs text-on-surface-variant hover:text-primary transition-colors">Magazyn</a></li>
+          <li><a href="/#modules" class="text-xs text-on-surface-variant hover:text-primary transition-colors">CRM</a></li>
+          <li><a href="/#modules" class="text-xs text-on-surface-variant hover:text-primary transition-colors">System Zleceń</a></li>
+          <li><a href="/#modules" class="text-xs text-on-surface-variant hover:text-primary transition-colors">Custom</a></li>
         </ul>
       </div>
       <div>
