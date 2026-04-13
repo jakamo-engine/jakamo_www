@@ -58,7 +58,7 @@
         <div class="text-[10px] font-label uppercase tracking-[0.2em] text-orange-400 mb-2">BŁĄD_KRYTYCZNY // 03</div>
         <h3 class="text-xl font-headline font-bold uppercase mb-3">Zero Automatyzacji</h3>
         <p class="text-sm text-on-surface-variant leading-relaxed">
-          Ręczne przeliczanie, kopiowanie, wysyłanie raportów. Twoi ludzie marnują godziny dziennie na czynności, które system może robić automatycznie.
+          Ręczne przeliczanie, kopiowanie, wysyłanie raportów. Twoi pracownicy marnują godziny dziennie na czynności, które system może robić automatycznie.
         </p>
         <div class="mt-6 text-[10px] font-label uppercase text-on-surface-variant tracking-widest border-t border-outline-variant/20 pt-4">
           SYS_RISK: HIGH // EFFICIENCY_LOSS
