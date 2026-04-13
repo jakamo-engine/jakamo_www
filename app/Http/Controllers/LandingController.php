@@ -22,11 +22,22 @@ class LandingController extends Controller
 
     public function contact(Request $request)
     {
+        // Honeypot — boty wypełniają ukryte pole, ludzie nie
+        if ($request->filled('website')) {
+            return back()->with('success', true);
+        }
+
+        // Timestamp — odrzuć jeśli formularz wysłany w < 3 sekundy od załadowania
+        $formLoadedAt = (int) $request->input('_form_ts');
+        if (!$formLoadedAt || (time() - $formLoadedAt) < 3) {
+            return back()->with('success', true);
+        }
+
         $validated = $request->validate([
             'name'       => 'required|string|max:150',
             'company'    => 'required|string|max:200',
             'email'      => 'required|email|max:200',
-            'phone'      => 'nullable|string|max:30',
+            'phone'      => 'required|string|max:30',
             'use_case'   => 'required|string|max:100',
             'message'    => 'nullable|string|max:2000',
             'consent'    => 'required|accepted',
@@ -42,6 +53,7 @@ class LandingController extends Controller
             'consent.accepted'     => 'Wymagana zgoda na przetwarzanie danych.',
             'rodo.required'        => 'Potwierdź zapoznanie się z Polityką Prywatności i RODO.',
             'rodo.accepted'        => 'Potwierdź zapoznanie się z Polityką Prywatności i RODO.',
+            'phone.required'       => 'Podaj numer telefonu.',
             'excel_file.mimes'     => 'Dozwolone formaty: .xlsx, .xls, .csv',
             'excel_file.max'       => 'Plik nie może przekraczać 10 MB.',
         ]);

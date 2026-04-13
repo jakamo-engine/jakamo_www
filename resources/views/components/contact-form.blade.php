@@ -41,7 +41,7 @@
           </p>
         </div>
       @else
-        <!-- Form -->
+        <!-- Błędy serwera -->
         @if($errors->any())
           <div id="form-errors" class="mb-6 p-4 border border-orange-400/40 bg-orange-400/5">
             <p class="text-[10px] font-label uppercase tracking-widest text-orange-400 mb-2">// BŁĘDY_WALIDACJI</p>
@@ -56,31 +56,42 @@
         <form id="contact-form" action="{{ route('contact.submit') }}" method="POST" enctype="multipart/form-data" class="space-y-6" novalidate>
           @csrf
 
+          {{-- Honeypot: ukryte przed ludźmi, boty to wypełniają --}}
+          <div style="position:absolute;left:-9999px;opacity:0;pointer-events:none" aria-hidden="true" tabindex="-1">
+            <label for="website">Nie wypełniaj tego pola</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" value="">
+          </div>
+
+          {{-- Timestamp: czas załadowania formularza --}}
+          <input type="hidden" name="_form_ts" id="_form_ts" value="">
+
           <div class="grid md:grid-cols-2 gap-6">
-            <div class="space-y-1">
-              <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">USER_IDENTITY *</label>
+            <div class="space-y-1 field-group">
+              <label class="field-label text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant" data-for="name">IMIĘ I NAZWISKO *</label>
               <input
                 name="name"
+                id="f-name"
                 value="{{ old('name') }}"
-                required
                 class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('name') border-orange-400 @enderror"
                 placeholder="Imię i Nazwisko"
                 type="text"
               />
+              <p class="field-error text-[10px] text-orange-400 font-label uppercase tracking-widest hidden">Pole wymagane</p>
               @error('name')
                 <p class="text-[10px] text-orange-400 font-label uppercase tracking-widest">{{ $message }}</p>
               @enderror
             </div>
-            <div class="space-y-1">
-              <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">FIRMA *</label>
+            <div class="space-y-1 field-group">
+              <label class="field-label text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant" data-for="company">FIRMA *</label>
               <input
                 name="company"
+                id="f-company"
                 value="{{ old('company') }}"
-                required
                 class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('company') border-orange-400 @enderror"
                 placeholder="Nazwa firmy"
                 type="text"
               />
+              <p class="field-error text-[10px] text-orange-400 font-label uppercase tracking-widest hidden">Pole wymagane</p>
               @error('company')
                 <p class="text-[10px] text-orange-400 font-label uppercase tracking-widest">{{ $message }}</p>
               @enderror
@@ -88,37 +99,43 @@
           </div>
 
           <div class="grid md:grid-cols-2 gap-6">
-            <div class="space-y-1">
-              <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">COMM_PROTOCOL *</label>
+            <div class="space-y-1 field-group">
+              <label class="field-label text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant" data-for="email">EMAIL *</label>
               <input
                 name="email"
+                id="f-email"
                 value="{{ old('email') }}"
-                required
                 class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('email') border-orange-400 @enderror"
                 placeholder="Email"
                 type="email"
               />
+              <p class="field-error text-[10px] text-orange-400 font-label uppercase tracking-widest hidden">Podaj poprawny adres email</p>
               @error('email')
                 <p class="text-[10px] text-orange-400 font-label uppercase tracking-widest">{{ $message }}</p>
               @enderror
             </div>
-            <div class="space-y-1">
-              <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">TEL_LINK</label>
+            <div class="space-y-1 field-group">
+              <label class="field-label text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant" data-for="phone">TELEFON *</label>
               <input
                 name="phone"
+                id="f-phone"
                 value="{{ old('phone') }}"
-                class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all"
-                placeholder="Telefon (opcjonalnie)"
+                class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('phone') border-orange-400 @enderror"
+                placeholder="Telefon"
                 type="tel"
               />
+              <p class="field-error text-[10px] text-orange-400 font-label uppercase tracking-widest hidden">Podaj numer telefonu</p>
+              @error('phone')
+                <p class="text-[10px] text-orange-400 font-label uppercase tracking-widest">{{ $message }}</p>
+              @enderror
             </div>
           </div>
 
-          <div class="space-y-1">
-            <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">DO CZEGO UŻYWASZ TERAZ EXCELA? *</label>
+          <div class="space-y-1 field-group">
+            <label class="field-label text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant" data-for="use_case">DO CZEGO UŻYWASZ TERAZ EXCELA? *</label>
             <select
               name="use_case"
-              required
+              id="f-use_case"
               class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface-variant transition-all appearance-none cursor-pointer @error('use_case') border-orange-400 @enderror"
             >
               <option value="">— wybierz główne zastosowanie —</option>
@@ -130,6 +147,7 @@
               <option {{ old('use_case') == 'Kilka rzeczy naraz' ? 'selected' : '' }}>Kilka rzeczy naraz</option>
               <option {{ old('use_case') == 'Coś innego' ? 'selected' : '' }}>Coś innego</option>
             </select>
+            <p class="field-error text-[10px] text-orange-400 font-label uppercase tracking-widest hidden">Wybierz główne zastosowanie</p>
             @error('use_case')
               <p class="text-[10px] text-orange-400 font-label uppercase tracking-widest">{{ $message }}</p>
             @enderror
@@ -137,7 +155,7 @@
 
           <!-- Excel upload -->
           <div class="space-y-2">
-            <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">PLIK_EXCEL // OPCJONALNIE</label>
+            <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">PLIK EXCEL (opcjonalnie)</label>
             <div class="border border-dashed border-primary/20 hover:border-primary/50 transition-colors bg-surface-container-lowest px-4 py-5 relative">
               <input
                 name="excel_file"
@@ -168,7 +186,7 @@
           </div>
 
           <div class="space-y-1">
-            <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">PROJECT_BRIEF</label>
+            <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">OPIS WYZWANIA (opcjonalnie)</label>
             <textarea
               name="message"
               class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all resize-none leading-relaxed"
@@ -178,41 +196,45 @@
           </div>
 
           <div class="space-y-3 pt-2">
-            <div class="flex items-start gap-3">
-              <input
-                id="f-consent"
-                name="consent"
-                type="checkbox"
-                value="1"
-                required
-                {{ old('consent') ? 'checked' : '' }}
-                class="mt-1 w-4 h-4 bg-surface-container-lowest border border-primary/40 rounded-none accent-cyan-400 cursor-pointer flex-shrink-0"
-              />
-              <label for="f-consent" class="text-xs text-on-surface-variant leading-relaxed cursor-pointer">
-                Wyrażam zgodę na przetwarzanie danych osobowych w celu odpowiedzi na zapytanie. Twoje dane są bezpieczne i nie będą udostępniane osobom trzecim. *
-              </label>
+            <div class="field-group">
+              <div class="flex items-start gap-3">
+                <input
+                  id="f-consent"
+                  name="consent"
+                  type="checkbox"
+                  value="1"
+                  {{ old('consent') ? 'checked' : '' }}
+                  class="mt-1 w-4 h-4 bg-surface-container-lowest border border-primary/40 rounded-none accent-cyan-400 cursor-pointer flex-shrink-0"
+                />
+                <label for="f-consent" class="field-label text-xs text-on-surface-variant leading-relaxed cursor-pointer" data-for="consent">
+                  Wyrażam zgodę na przetwarzanie danych osobowych w celu odpowiedzi na zapytanie. Twoje dane są bezpieczne i nie będą udostępniane osobom trzecim. *
+                </label>
+              </div>
+              <p class="field-error text-[10px] text-orange-400 font-label uppercase tracking-widest hidden mt-1 ml-7">Zgoda jest wymagana</p>
+              @error('consent')
+                <p class="text-[10px] text-orange-400 font-label uppercase tracking-widest mt-1 ml-7">{{ $message }}</p>
+              @enderror
             </div>
-            @error('consent')
-              <p class="text-[10px] text-orange-400 font-label uppercase tracking-widest">{{ $message }}</p>
-            @enderror
 
-            <div class="flex items-start gap-3">
-              <input
-                id="f-rodo"
-                name="rodo"
-                type="checkbox"
-                value="1"
-                required
-                {{ old('rodo') ? 'checked' : '' }}
-                class="mt-1 w-4 h-4 bg-surface-container-lowest border border-primary/40 rounded-none accent-cyan-400 cursor-pointer flex-shrink-0"
-              />
-              <label for="f-rodo" class="text-xs text-on-surface-variant leading-relaxed cursor-pointer">
-                Zapoznałem się z <a href="{{ route('privacy') }}" target="_blank" class="text-primary hover:underline">Polityką Prywatności</a>. *
-              </label>
+            <div class="field-group">
+              <div class="flex items-start gap-3">
+                <input
+                  id="f-rodo"
+                  name="rodo"
+                  type="checkbox"
+                  value="1"
+                  {{ old('rodo') ? 'checked' : '' }}
+                  class="mt-1 w-4 h-4 bg-surface-container-lowest border border-primary/40 rounded-none accent-cyan-400 cursor-pointer flex-shrink-0"
+                />
+                <label for="f-rodo" class="field-label text-xs text-on-surface-variant leading-relaxed cursor-pointer" data-for="rodo">
+                  Zapoznałem się z <a href="{{ route('privacy') }}" target="_blank" class="text-primary hover:underline">Polityką Prywatności</a>. *
+                </label>
+              </div>
+              <p class="field-error text-[10px] text-orange-400 font-label uppercase tracking-widest hidden mt-1 ml-7">Potwierdzenie jest wymagane</p>
+              @error('rodo')
+                <p class="text-[10px] text-orange-400 font-label uppercase tracking-widest mt-1 ml-7">{{ $message }}</p>
+              @enderror
             </div>
-            @error('rodo')
-              <p class="text-[10px] text-orange-400 font-label uppercase tracking-widest">{{ $message }}</p>
-            @enderror
           </div>
 
           <button
@@ -239,63 +261,103 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var target = document.getElementById('{{ session('success') ? 'form-success' : 'form-errors' }}');
-    if (target) {
-      setTimeout(function () {
-        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 100);
-    }
+    if (target) setTimeout(function () { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100);
   });
 </script>
 @endif
 
 <script>
-  (function () {
-    var form = document.getElementById('contact-form');
-    if (!form) return;
+(function () {
+  // Timestamp — ustaw czas załadowania
+  var ts = document.getElementById('_form_ts');
+  if (ts) ts.value = Math.floor(Date.now() / 1000);
 
-    form.addEventListener('submit', function (e) {
-      var valid = true;
-      var firstInvalid = null;
+  var form = document.getElementById('contact-form');
+  if (!form) return;
 
-      // Wymagane pola tekstowe
-      ['name', 'company', 'email', 'use_case'].forEach(function (name) {
-        var el = form.querySelector('[name="' + name + '"]');
-        if (!el || !el.value.trim()) {
-          el && el.classList.add('border-orange-400');
-          valid = false;
-          if (!firstInvalid) firstInvalid = el;
-        } else {
-          el && el.classList.remove('border-orange-400');
-        }
-      });
+  function markInvalid(group, input) {
+    if (input) {
+      input.classList.add('!border-orange-400');
+      input.classList.remove('border-primary/30');
+    }
+    var label = group.querySelector('.field-label');
+    if (label) label.classList.add('!text-orange-400');
+    var err = group.querySelector('.field-error');
+    if (err) err.classList.remove('hidden');
+  }
 
-      // Wymagane checkboxy
-      ['consent', 'rodo'].forEach(function (name) {
-        var el = form.querySelector('[name="' + name + '"]');
-        if (!el || !el.checked) {
-          valid = false;
-          if (!firstInvalid) firstInvalid = el;
-        }
-      });
+  function markValid(group, input) {
+    if (input) {
+      input.classList.remove('!border-orange-400');
+    }
+    var label = group.querySelector('.field-label');
+    if (label) label.classList.remove('!text-orange-400');
+    var err = group.querySelector('.field-error');
+    if (err) err.classList.add('hidden');
+  }
 
-      if (!valid) {
-        e.preventDefault();
-        if (firstInvalid) {
-          firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        return;
-      }
+  // Czyść podświetlenie przy wpisywaniu
+  form.querySelectorAll('input, select, textarea').forEach(function (el) {
+    el.addEventListener('input', function () {
+      var group = el.closest('.field-group');
+      if (group) markValid(group, el);
+    });
+    el.addEventListener('change', function () {
+      var group = el.closest('.field-group');
+      if (group) markValid(group, el);
+    });
+  });
 
-      // Stan ładowania
-      var btn = document.getElementById('form-submit-btn');
-      var label = document.getElementById('btn-label');
-      var sending = document.getElementById('btn-sending');
-      if (btn && label && sending) {
-        btn.disabled = true;
-        btn.classList.add('opacity-60', 'cursor-not-allowed');
-        label.classList.add('hidden');
-        sending.classList.remove('hidden');
+  form.addEventListener('submit', function (e) {
+    var valid = true;
+    var firstInvalid = null;
+
+    // Pola tekstowe / select
+    [
+      { id: 'f-name',     check: function(el) { return el.value.trim() !== ''; } },
+      { id: 'f-company',  check: function(el) { return el.value.trim() !== ''; } },
+      { id: 'f-email',    check: function(el) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()); } },
+      { id: 'f-use_case', check: function(el) { return el.value !== ''; } },
+      { id: 'f-phone',    check: function(el) { return el.value.trim() !== ''; } },
+    ].forEach(function (rule) {
+      var el = document.getElementById(rule.id);
+      var group = el && el.closest('.field-group');
+      if (!el || !group) return;
+      if (!rule.check(el)) {
+        markInvalid(group, el);
+        valid = false;
+        if (!firstInvalid) firstInvalid = el;
+      } else {
+        markValid(group, el);
       }
     });
-  })();
+
+    // Checkboxy
+    ['f-consent', 'f-rodo'].forEach(function (id) {
+      var el = document.getElementById(id);
+      var group = el && el.closest('.field-group');
+      if (!el || !group) return;
+      if (!el.checked) {
+        markInvalid(group, null);
+        valid = false;
+        if (!firstInvalid) firstInvalid = el;
+      } else {
+        markValid(group, null);
+      }
+    });
+
+    if (!valid) {
+      e.preventDefault();
+      if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Stan ładowania
+    var btn = document.getElementById('form-submit-btn');
+    document.getElementById('btn-label').classList.add('hidden');
+    document.getElementById('btn-sending').classList.remove('hidden');
+    btn.disabled = true;
+    btn.classList.add('opacity-60', 'cursor-not-allowed');
+  });
+})();
 </script>
