@@ -8,7 +8,7 @@
       <div>
         <div class="text-[10px] font-label uppercase tracking-[0.3em] text-cyan-400 mb-3">// MODUŁY_ARCHITEKTONICZNE</div>
         <h2 class="text-4xl md:text-5xl font-headline font-bold uppercase leading-tight">
-          DEDYKOWANE<br/><span class="text-primary cyber-glow">SOLUTIONS</span>
+          DEDYKOWANE<br/><span class="text-primary cyber-glow">ROZWIĄZANIA</span>
         </h2>
         <div class="w-20 h-0.5 bg-primary mt-4"></div>
       </div>
