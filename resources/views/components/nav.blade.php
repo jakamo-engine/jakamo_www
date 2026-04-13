@@ -51,14 +51,14 @@
     <span class="text-cyan-400">STATUS: OPERATIONAL</span>
     <span>// EXCEL_REPLACEMENT: ACTIVE //</span>
     <span class="text-orange-400">LEADY_PRZETWORZONE: 47</span>
-    <span>// APLIKACJE_WDROŻONE: 12 //</span>
+    <span>// APLIKACJE_WDROŻONE: 5 //</span>
     <span class="text-cyan-400">UPTIME: 99.97%</span>
     <span>// CZAS_WDROŻENIA: 3-6 TYG //</span>
     <span>// JAKAMO_ENGINE_v2.0 //</span>
     <span class="text-cyan-400">STATUS: OPERATIONAL</span>
     <span>// EXCEL_REPLACEMENT: ACTIVE //</span>
     <span class="text-orange-400">LEADY_PRZETWORZONE: 47</span>
-    <span>// APLIKACJE_WDROŻONE: 12 //</span>
+    <span>// APLIKACJE_WDROŻONE: 5 //</span>
     <span class="text-cyan-400">UPTIME: 99.97%</span>
     <span>// CZAS_WDROŻENIA: 3-6 TYG //</span>
   </div>
