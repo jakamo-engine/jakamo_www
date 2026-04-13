@@ -67,5 +67,5 @@ REMOTE
 
 echo ""
 echo "═══════════════════════════════════════"
-echo " DEPLOY OK // https://jakamo.pl/landing"
+echo " DEPLOY OK // https://jakamo.pl"
 echo "═══════════════════════════════════════"

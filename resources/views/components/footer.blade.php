@@ -52,9 +52,9 @@
       <p class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant">
         SYS_REF: JAKAMO_ENGINE_v2.0 // ALL_RIGHTS_RESERVED © {{ date('Y') }}
       </p>
-      <div class="flex gap-6">
-        <a href="#" class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant hover:text-orange-400 transition-colors">Polityka Prywatności</a>
-        <a href="#" class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant hover:text-orange-400 transition-colors">RODO</a>
+      <div class="flex gap-6 items-center">
+        <a href="{{ route('privacy') }}" class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant hover:text-orange-400 transition-colors">Polityka Prywatności</a>
+        <span id="cookie-settings-link" class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer"></span>
       </div>
     </div>
   </div>

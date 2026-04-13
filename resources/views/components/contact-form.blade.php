@@ -190,7 +190,7 @@
                 class="mt-1 w-4 h-4 bg-surface-container-lowest border border-primary/40 rounded-none accent-cyan-400 cursor-pointer flex-shrink-0"
               />
               <label for="f-rodo" class="text-xs text-on-surface-variant leading-relaxed cursor-pointer">
-                Zapoznałem się z <a href="#" class="text-primary hover:underline">Polityką Prywatności</a> i <a href="#" class="text-primary hover:underline">klauzulą RODO</a>.
+                Zapoznałem się z <a href="{{ route('privacy') }}" target="_blank" class="text-primary hover:underline">Polityką Prywatności</a>.
               </label>
             </div>
             @error('rodo')
