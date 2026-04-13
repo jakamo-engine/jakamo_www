@@ -29,7 +29,7 @@
         </h1>
 
         <p class="text-base text-on-surface-variant leading-relaxed max-w-lg">
-          Budujemy dedykowane aplikacje webowe zamiast Excela. Bezpieczne, mobilne i w pełni zautomatyzowane — <strong class="text-on-surface font-medium">architektura przyszłości dla Twojego biznesu.</strong>
+          Buduję dedykowane aplikacje webowe zamiast Excela. Bezpieczne, mobilne i w pełni zautomatyzowane — <strong class="text-on-surface font-medium">architektura przyszłości dla Twojego biznesu.</strong>
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4">
