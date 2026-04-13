@@ -44,7 +44,7 @@
         <!-- Stats bar -->
         <div class="grid grid-cols-3 gap-0 border border-outline-variant/30 bg-surface-container-lowest/60 mt-8">
           <div class="p-4 border-r border-outline-variant/30">
-            <div class="text-2xl font-headline font-bold text-primary stat-num">98%</div>
+            <div class="text-2xl font-headline font-bold text-primary stat-num">100%</div>
             <div class="text-[10px] font-label uppercase text-on-surface-variant tracking-[0.1em] mt-1">Klientów poleca</div>
           </div>
           <div class="p-4 border-r border-outline-variant/30">
