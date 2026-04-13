@@ -26,28 +26,27 @@ class LeadsTable
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->label('Data')
-                    ->dateTime('d.m.Y H:i')
+                    ->date('d.m.Y')
                     ->sortable(),
                 TextColumn::make('name')
-                    ->label('Imię i nazwisko')
-                    ->searchable(),
-                TextColumn::make('company')
-                    ->label('Firma')
+                    ->label('Kontakt')
+                    ->description(fn ($record) => $record->company)
                     ->searchable(),
                 TextColumn::make('email')
                     ->label('Email')
                     ->searchable()
-                    ->copyable(),
+                    ->copyable()
+                    ->limit(25),
                 TextColumn::make('phone')
-                    ->label('Telefon')
+                    ->label('Tel')
                     ->searchable()
                     ->copyable(),
                 TextColumn::make('use_case')
-                    ->label('Zastosowanie')
-                    ->badge()
-                    ->searchable(),
+                    ->label('Cel')
+                    ->limit(15)
+                    ->tooltip(fn ($record) => $record->use_case),
                 IconColumn::make('excel_file')
-                    ->label('Plik')
+                    ->label('XLS')
                     ->boolean()
                     ->getStateUsing(fn ($record) => (bool) $record->excel_file),
                 TextColumn::make('ip_address')
