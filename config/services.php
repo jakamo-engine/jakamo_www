@@ -39,4 +39,8 @@ return [
         'id' => env('GTM_ID'),
     ],
 
+    'ga' => [
+        'id' => env('GA_ID'),
+    ],
+
 ];

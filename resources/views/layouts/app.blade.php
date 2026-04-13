@@ -38,6 +38,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','{{ config('services.gtm.id') }}');</script>
 @endif
+@if(config('services.ga.id'))
+<!-- Google Analytics 4 — respektuje Consent Mode v2 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.ga.id') }}"></script>
+<script>gtag('config', '{{ config('services.ga.id') }}');</script>
+@endif
 </head>
 <body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary">
 
