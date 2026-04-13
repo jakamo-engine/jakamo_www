@@ -28,7 +28,7 @@
 
       @if(session('success'))
         <!-- Success state -->
-        <div class="text-center py-12">
+        <div class="text-center py-12" id="form-success">
           <div class="w-16 h-16 border-2 border-cyan-400 flex items-center justify-center mx-auto mb-6 cyber-glow">
             <svg width="32" height="32" fill="none" stroke="#00d4ff" stroke-width="2" viewBox="0 0 24 24">
               <polyline points="20 6 9 17 4 12"/>
@@ -42,7 +42,18 @@
         </div>
       @else
         <!-- Form -->
-        <form action="{{ route('contact.submit') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+        @if($errors->any())
+          <div id="form-errors" class="mb-6 p-4 border border-orange-400/40 bg-orange-400/5">
+            <p class="text-[10px] font-label uppercase tracking-widest text-orange-400 mb-2">// BŁĘDY_WALIDACJI</p>
+            <ul class="space-y-1">
+              @foreach($errors->all() as $error)
+                <li class="text-xs text-orange-400">— {{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+
+        <form id="contact-form" action="{{ route('contact.submit') }}" method="POST" enctype="multipart/form-data" class="space-y-6" novalidate>
           @csrf
 
           <div class="grid md:grid-cols-2 gap-6">
@@ -51,6 +62,7 @@
               <input
                 name="name"
                 value="{{ old('name') }}"
+                required
                 class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('name') border-orange-400 @enderror"
                 placeholder="Imię i Nazwisko"
                 type="text"
@@ -64,6 +76,7 @@
               <input
                 name="company"
                 value="{{ old('company') }}"
+                required
                 class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('company') border-orange-400 @enderror"
                 placeholder="Nazwa firmy"
                 type="text"
@@ -80,6 +93,7 @@
               <input
                 name="email"
                 value="{{ old('email') }}"
+                required
                 class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('email') border-orange-400 @enderror"
                 placeholder="Email"
                 type="email"
@@ -104,6 +118,7 @@
             <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">DO CZEGO UŻYWASZ TERAZ EXCELA? *</label>
             <select
               name="use_case"
+              required
               class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface-variant transition-all appearance-none cursor-pointer @error('use_case') border-orange-400 @enderror"
             >
               <option value="">— wybierz główne zastosowanie —</option>
@@ -169,11 +184,12 @@
                 name="consent"
                 type="checkbox"
                 value="1"
+                required
                 {{ old('consent') ? 'checked' : '' }}
                 class="mt-1 w-4 h-4 bg-surface-container-lowest border border-primary/40 rounded-none accent-cyan-400 cursor-pointer flex-shrink-0"
               />
               <label for="f-consent" class="text-xs text-on-surface-variant leading-relaxed cursor-pointer">
-                Wyrażam zgodę na przetwarzanie danych osobowych w celu odpowiedzi na zapytanie. Twoje dane są bezpieczne i nie będą udostępniane osobom trzecim.
+                Wyrażam zgodę na przetwarzanie danych osobowych w celu odpowiedzi na zapytanie. Twoje dane są bezpieczne i nie będą udostępniane osobom trzecim. *
               </label>
             </div>
             @error('consent')
@@ -186,11 +202,12 @@
                 name="rodo"
                 type="checkbox"
                 value="1"
+                required
                 {{ old('rodo') ? 'checked' : '' }}
                 class="mt-1 w-4 h-4 bg-surface-container-lowest border border-primary/40 rounded-none accent-cyan-400 cursor-pointer flex-shrink-0"
               />
               <label for="f-rodo" class="text-xs text-on-surface-variant leading-relaxed cursor-pointer">
-                Zapoznałem się z <a href="{{ route('privacy') }}" target="_blank" class="text-primary hover:underline">Polityką Prywatności</a>.
+                Zapoznałem się z <a href="{{ route('privacy') }}" target="_blank" class="text-primary hover:underline">Polityką Prywatności</a>. *
               </label>
             </div>
             @error('rodo')
@@ -199,10 +216,12 @@
           </div>
 
           <button
+            id="form-submit-btn"
             type="submit"
             class="cta-main w-full bg-primary-container text-on-primary py-4 font-label font-bold uppercase tracking-[0.2em] text-sm shadow-[0_0_15px_rgba(0,212,255,0.2)] transition-all"
           >
-            INICJUJ BEZPŁATNĄ ANALIZĘ →
+            <span id="btn-label">INICJUJ BEZPŁATNĄ ANALIZĘ →</span>
+            <span id="btn-sending" class="hidden">WYSYŁANIE...</span>
           </button>
 
           <p class="text-center text-[10px] font-label uppercase text-on-surface-variant tracking-widest">
@@ -215,3 +234,68 @@
 
   </div>
 </section>
+
+@if(session('success') || $errors->any())
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var target = document.getElementById('{{ session('success') ? 'form-success' : 'form-errors' }}');
+    if (target) {
+      setTimeout(function () {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+  });
+</script>
+@endif
+
+<script>
+  (function () {
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      var valid = true;
+      var firstInvalid = null;
+
+      // Wymagane pola tekstowe
+      ['name', 'company', 'email', 'use_case'].forEach(function (name) {
+        var el = form.querySelector('[name="' + name + '"]');
+        if (!el || !el.value.trim()) {
+          el && el.classList.add('border-orange-400');
+          valid = false;
+          if (!firstInvalid) firstInvalid = el;
+        } else {
+          el && el.classList.remove('border-orange-400');
+        }
+      });
+
+      // Wymagane checkboxy
+      ['consent', 'rodo'].forEach(function (name) {
+        var el = form.querySelector('[name="' + name + '"]');
+        if (!el || !el.checked) {
+          valid = false;
+          if (!firstInvalid) firstInvalid = el;
+        }
+      });
+
+      if (!valid) {
+        e.preventDefault();
+        if (firstInvalid) {
+          firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+
+      // Stan ładowania
+      var btn = document.getElementById('form-submit-btn');
+      var label = document.getElementById('btn-label');
+      var sending = document.getElementById('btn-sending');
+      if (btn && label && sending) {
+        btn.disabled = true;
+        btn.classList.add('opacity-60', 'cursor-not-allowed');
+        label.classList.add('hidden');
+        sending.classList.remove('hidden');
+      }
+    });
+  })();
+</script>
