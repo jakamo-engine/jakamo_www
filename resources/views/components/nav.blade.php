@@ -2,7 +2,7 @@
      NAVIGATION
 ════════════════════════════════════════════ -->
 <header class="fixed top-0 w-full z-50 border-b border-cyan-500/20 bg-[#131313]/90 backdrop-blur-xl">
-  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between gap-4">
     <a href="/" class="flex items-center">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 72" fill="none" role="img" aria-label="JAKAMO ARCHITECT" class="h-6 md:h-8 w-auto">
         <defs>
@@ -37,8 +37,9 @@
       <a href="{{ $base }}#process" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Proces</a>
       <a href="{{ $base }}#contact" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Kontakt</a>
     </nav>
-    <a href="{{ $base }}#contact" class="text-[11px] font-label font-bold uppercase tracking-[0.15em] text-on-primary bg-primary-container px-5 py-2 hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all cta-main">
-      Bezpłatna Analiza →
+    <a href="{{ $base }}#contact" class="text-[11px] font-label font-bold uppercase tracking-[0.15em] text-on-primary bg-primary-container px-3 md:px-5 py-2 hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all cta-main whitespace-nowrap">
+      <span class="md:hidden">Analiza →</span>
+      <span class="hidden md:inline">Bezpłatna Analiza →</span>
     </a>
   </div>
 </header>
