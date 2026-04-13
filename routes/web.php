@@ -9,6 +9,6 @@ Route::post('/contact', [LandingController::class, 'contact'])->name('contact.su
 Route::get('/polityka-prywatnosci', [LandingController::class, 'privacy'])->name('privacy');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/jakamo-panel/leads/{lead}/download', [AdminController::class, 'downloadExcel'])
+    Route::get('/panel/leads/{lead}/download', [AdminController::class, 'downloadExcel'])
         ->name('admin.lead.download');
 });
