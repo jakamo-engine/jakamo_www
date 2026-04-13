@@ -67,11 +67,12 @@
 
           <div class="grid md:grid-cols-2 gap-6">
             <div class="space-y-1 field-group">
-              <label class="field-label text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant" data-for="name">IMIĘ I NAZWISKO *</label>
+              <label for="f-name" class="field-label text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant" data-for="name">IMIĘ I NAZWISKO *</label>
               <input
                 name="name"
                 id="f-name"
                 value="{{ old('name') }}"
+                autocomplete="name"
                 class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('name') border-orange-400 @enderror"
                 placeholder="Imię i Nazwisko"
                 type="text"
@@ -82,11 +83,12 @@
               @enderror
             </div>
             <div class="space-y-1 field-group">
-              <label class="field-label text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant" data-for="company">FIRMA *</label>
+              <label for="f-company" class="field-label text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant" data-for="company">FIRMA *</label>
               <input
                 name="company"
                 id="f-company"
                 value="{{ old('company') }}"
+                autocomplete="organization"
                 class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('company') border-orange-400 @enderror"
                 placeholder="Nazwa firmy"
                 type="text"
@@ -100,11 +102,12 @@
 
           <div class="grid md:grid-cols-2 gap-6">
             <div class="space-y-1 field-group">
-              <label class="field-label text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant" data-for="email">EMAIL *</label>
+              <label for="f-email" class="field-label text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant" data-for="email">EMAIL *</label>
               <input
                 name="email"
                 id="f-email"
                 value="{{ old('email') }}"
+                autocomplete="email"
                 class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('email') border-orange-400 @enderror"
                 placeholder="Email"
                 type="email"
@@ -115,11 +118,12 @@
               @enderror
             </div>
             <div class="space-y-1 field-group">
-              <label class="field-label text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant" data-for="phone">TELEFON *</label>
+              <label for="f-phone" class="field-label text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant" data-for="phone">TELEFON *</label>
               <input
                 name="phone"
                 id="f-phone"
                 value="{{ old('phone') }}"
+                autocomplete="tel"
                 class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('phone') border-orange-400 @enderror"
                 placeholder="Telefon"
                 type="tel"
@@ -132,7 +136,7 @@
           </div>
 
           <div class="space-y-1 field-group">
-            <label class="field-label text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant" data-for="use_case">DO CZEGO UŻYWASZ TERAZ EXCELA? *</label>
+            <label for="f-use_case" class="field-label text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant" data-for="use_case">DO CZEGO UŻYWASZ TERAZ EXCELA? *</label>
             <select
               name="use_case"
               id="f-use_case"
@@ -155,7 +159,7 @@
 
           <!-- Excel upload -->
           <div class="space-y-2">
-            <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">PLIK EXCEL (opcjonalnie)</label>
+            <label for="excel-upload" class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">PLIK EXCEL (opcjonalnie)</label>
             <div class="border border-dashed border-primary/20 hover:border-primary/50 transition-colors bg-surface-container-lowest px-4 py-5 relative">
               <input
                 name="excel_file"
@@ -186,9 +190,10 @@
           </div>
 
           <div class="space-y-1">
-            <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">OPIS WYZWANIA (opcjonalnie)</label>
+            <label for="f-message" class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">OPIS WYZWANIA (opcjonalnie)</label>
             <textarea
               name="message"
+              id="f-message"
               class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all resize-none leading-relaxed"
               placeholder="Opisz swoje wyzwania... ile osób korzysta z arkusza, co jest w nim najtrudniejsze, co chciałbyś usprawnić."
               rows="4"
