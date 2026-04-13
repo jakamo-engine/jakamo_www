@@ -2,10 +2,13 @@
 
 namespace App\Filament\Resources\Leads\Tables;
 
+use App\Models\Lead;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -17,6 +20,10 @@ class LeadsTable
         return $table
             ->defaultSort('created_at', 'desc')
             ->columns([
+                SelectColumn::make('status')
+                    ->label('Status')
+                    ->options(Lead::STATUSES)
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->label('Data')
                     ->dateTime('d.m.Y H:i')
@@ -40,7 +47,7 @@ class LeadsTable
                     ->badge()
                     ->searchable(),
                 IconColumn::make('excel_file')
-                    ->label('Plik Excel')
+                    ->label('Plik')
                     ->boolean()
                     ->getStateUsing(fn ($record) => (bool) $record->excel_file),
                 TextColumn::make('ip_address')
@@ -48,6 +55,9 @@ class LeadsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                SelectFilter::make('status')
+                    ->label('Status')
+                    ->options(Lead::STATUSES),
                 SelectFilter::make('use_case')
                     ->label('Zastosowanie')
                     ->options([
@@ -62,6 +72,7 @@ class LeadsTable
             ])
             ->recordActions([
                 ViewAction::make(),
+                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

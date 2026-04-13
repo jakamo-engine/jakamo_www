@@ -12,7 +12,12 @@ class LandingController extends Controller
 {
     public function index()
     {
-        return view('landing.index');
+        $stats = [
+            'apps'  => 5 + Lead::where('status', Lead::STATUS_SUCCESS)->count(),
+            'leads' => 5 + Lead::count(),
+        ];
+
+        return view('landing.index', compact('stats'));
     }
 
     public function privacy()
