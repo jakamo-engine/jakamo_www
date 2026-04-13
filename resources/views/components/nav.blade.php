@@ -3,14 +3,33 @@
 ════════════════════════════════════════════ -->
 <header class="fixed top-0 w-full z-50 border-b border-cyan-500/20 bg-[#131313]/90 backdrop-blur-xl">
   <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <!-- Logo mark -->
-      <div class="w-8 h-8 border border-cyan-400/60 flex items-center justify-center relative">
-        <div class="w-3 h-3 bg-cyan-400"></div>
-        <div class="absolute -top-px -left-px w-2 h-2 border-t border-l border-cyan-400"></div>
-      </div>
-      <span class="text-sm font-headline font-bold text-cyan-400 uppercase tracking-[0.15em]">JAKAMO <span class="text-on-surface-variant font-light">//</span> ARCHITEKT</span>
-    </div>
+    <a href="/" class="flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 72" fill="none" role="img" aria-label="JAKAMO ARCHITECT" class="h-8 w-auto">
+        <defs>
+          <filter id="nav-bracket-glow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="nav-bracket-halo" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur"/>
+          </filter>
+        </defs>
+        <!-- Outer border -->
+        <rect x="0.5" y="0.5" width="479" height="71" stroke="#00d4ff" stroke-width="0.75" stroke-opacity="0.2"/>
+        <!-- Left bracket [ — glow -->
+        <path d="M 22 11 L 11 11 L 11 61 L 22 61" stroke="#00d4ff" stroke-width="6" stroke-opacity="0.25" stroke-linecap="square" filter="url(#nav-bracket-halo)"/>
+        <path d="M 22 11 L 11 11 L 11 61 L 22 61" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="square" filter="url(#nav-bracket-glow)"/>
+        <!-- Right bracket ] — glow -->
+        <path d="M 458 11 L 469 11 L 469 61 L 458 61" stroke="#00d4ff" stroke-width="6" stroke-opacity="0.25" stroke-linecap="square" filter="url(#nav-bracket-halo)"/>
+        <path d="M 458 11 L 469 11 L 469 61 L 458 61" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="square" filter="url(#nav-bracket-glow)"/>
+        <!-- JAKAMO -->
+        <text x="34" y="45" font-family="'Space Grotesk', ui-sans-serif, sans-serif" font-weight="700" font-size="30" letter-spacing="6" fill="#ffffff">JAKAMO</text>
+        <!-- // -->
+        <text x="198" y="45" font-family="'Space Grotesk', ui-sans-serif, sans-serif" font-weight="300" font-size="30" fill="#00d4ff" filter="url(#nav-bracket-glow)">//</text>
+        <!-- ARCHITECT -->
+        <text x="240" y="45" font-family="'Space Grotesk', ui-sans-serif, sans-serif" font-weight="700" font-size="30" letter-spacing="4" fill="#e5e2e1">ARCHITECT</text>
+      </svg>
+    </a>
     <nav class="desktop-nav flex items-center gap-8">
       <a href="#problem" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Problem</a>
       <a href="#modules" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Moduły</a>

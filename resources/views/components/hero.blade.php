@@ -23,7 +23,7 @@
 
         <h1 class="font-headline font-bold leading-[1.0] uppercase">
           <span class="text-[clamp(2.5rem,7vw,5.5rem)] text-on-surface block">POŻEGNAJ</span>
-          <span class="text-[clamp(2.5rem,7vw,5.5rem)] block strike-through text-orange-400 orange-glow">ARKUSZE.</span>
+          <span class="text-[clamp(2.5rem,7vw,5.5rem)] block strike-through text-orange-400 orange-glow">EXCEL.</span>
           <span class="text-[clamp(2.5rem,7vw,5.5rem)] text-primary cyber-glow block">POWITAJ</span>
           <span class="text-[clamp(2.5rem,7vw,5.5rem)] text-primary cyber-glow block">EFEKTYWNOŚĆ.</span>
         </h1>
