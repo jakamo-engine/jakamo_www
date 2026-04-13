@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
 <title>@yield('title', 'JAKAMO // ARCHITEKT — Koniec z Excelem. Twoja aplikacja webowa.')</title>
 <meta name="description" content="@yield('description', 'Zamieniam Twoje arkusze Excel na dedykowane aplikacje webowe. CRM, magazyn, system zleceń — skrojone pod Twój biznes.')"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>

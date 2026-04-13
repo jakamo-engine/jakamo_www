@@ -4,7 +4,7 @@
 <header class="fixed top-0 w-full z-50 border-b border-cyan-500/20 bg-[#131313]/90 backdrop-blur-xl">
   <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between gap-4">
     <a href="/" class="flex items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 72" fill="none" role="img" aria-label="JAKAMO ARCHITECT" class="h-6 md:h-8 w-auto">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 462 72" fill="none" role="img" aria-label="JAKAMO ARCHITECT" class="h-6 md:h-8 w-auto">
         <defs>
           <filter id="nav-bracket-glow" x="-80%" y="-80%" width="260%" height="260%">
             <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
@@ -15,17 +15,17 @@
           </filter>
         </defs>
         <!-- Outer border -->
-        <rect x="0.5" y="0.5" width="479" height="71" stroke="#00d4ff" stroke-width="0.75" stroke-opacity="0.2"/>
+        <rect x="0.5" y="0.5" width="461" height="71" stroke="#00d4ff" stroke-width="0.75" stroke-opacity="0.2"/>
         <!-- Left bracket [ — glow -->
         <path d="M 22 11 L 11 11 L 11 61 L 22 61" stroke="#00d4ff" stroke-width="6" stroke-opacity="0.25" stroke-linecap="square" filter="url(#nav-bracket-halo)"/>
         <path d="M 22 11 L 11 11 L 11 61 L 22 61" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="square" filter="url(#nav-bracket-glow)"/>
         <!-- Right bracket ] — glow -->
-        <path d="M 458 11 L 469 11 L 469 61 L 458 61" stroke="#00d4ff" stroke-width="6" stroke-opacity="0.25" stroke-linecap="square" filter="url(#nav-bracket-halo)"/>
-        <path d="M 458 11 L 469 11 L 469 61 L 458 61" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="square" filter="url(#nav-bracket-glow)"/>
+        <path d="M 440 11 L 451 11 L 451 61 L 440 61" stroke="#00d4ff" stroke-width="6" stroke-opacity="0.25" stroke-linecap="square" filter="url(#nav-bracket-halo)"/>
+        <path d="M 440 11 L 451 11 L 451 61 L 440 61" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="square" filter="url(#nav-bracket-glow)"/>
         <!-- JAKAMO -->
         <text x="34" y="45" font-family="'Space Grotesk', ui-sans-serif, sans-serif" font-weight="700" font-size="30" letter-spacing="6" fill="#ffffff">JAKAMO</text>
         <!-- // -->
-        <text x="198" y="45" font-family="'Space Grotesk', ui-sans-serif, sans-serif" font-weight="300" font-size="30" fill="#00d4ff" filter="url(#nav-bracket-glow)">//</text>
+        <text x="198" y="45" font-family="'Space Grotesk', ui-sans-serif, sans-serif" font-weight="300" font-size="30" fill="#fb923c">//</text>
         <!-- ARCHITECT -->
         <text x="240" y="45" font-family="'Space Grotesk', ui-sans-serif, sans-serif" font-weight="700" font-size="30" letter-spacing="4" fill="#e5e2e1">ARCHITECT</text>
       </svg>

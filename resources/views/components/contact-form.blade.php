@@ -175,7 +175,7 @@
                   <div id="file-label" class="text-sm text-on-surface-variant">Przeciągnij plik lub <span class="text-primary">kliknij aby wybrać</span></div>
                   <div class="text-[10px] font-label uppercase tracking-[0.15em] text-on-surface-variant/60 mt-1">
                     .xlsx / .xls / .csv &nbsp;·&nbsp; max 10 MB &nbsp;·&nbsp;
-                    <span class="text-orange-400">tylko struktura — usuń dane przed wysłaniem</span>
+                    <span class="text-on-surface-variant/80">tylko struktura — usuń dane przed wysłaniem</span>
                   </div>
                 </div>
               </div>
