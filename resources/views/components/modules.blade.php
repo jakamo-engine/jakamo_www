@@ -31,7 +31,7 @@
         </div>
         <h3 class="text-3xl font-headline font-bold uppercase mb-3">MAGAZYN</h3>
         <p class="text-sm text-on-surface-variant mb-6 leading-relaxed">
-          Pełna kontrola stanów magazynowych w czasie rzeczywistym. Integracja z czytnikami kodów kreskowych i automatyzacja przyjęć/wydań.
+          Pełna kontrola stanów magazynowych w czasie rzeczywistym. Automatyzacja przyjęć i wydań, alerty niskiego stanu i historia ruchów w jednym miejscu.
         </p>
         <ul class="space-y-2 mb-6">
           <li class="flex items-center gap-2 text-xs text-on-surface-variant">
