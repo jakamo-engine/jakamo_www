@@ -1,5 +1,10 @@
 @import 'tailwindcss';
 
+/* Offset dla fixed headera (h-16 nav + h-8 ticker = 96px) przy anchor linkach */
+html {
+    scroll-padding-top: 6rem; /* 96px */
+}
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
