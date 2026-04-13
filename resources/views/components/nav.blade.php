@@ -30,13 +30,14 @@
         <text x="240" y="45" font-family="'Space Grotesk', ui-sans-serif, sans-serif" font-weight="700" font-size="30" letter-spacing="4" fill="#e5e2e1">ARCHITECT</text>
       </svg>
     </a>
+    @php $base = request()->routeIs('privacy') ? '/' : ''; @endphp
     <nav class="desktop-nav flex items-center gap-8">
-      <a href="#problem" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Problem</a>
-      <a href="#modules" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Moduły</a>
-      <a href="#process" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Proces</a>
-      <a href="#contact" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Kontakt</a>
+      <a href="{{ $base }}#problem" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Problem</a>
+      <a href="{{ $base }}#modules" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Moduły</a>
+      <a href="{{ $base }}#process" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Proces</a>
+      <a href="{{ $base }}#contact" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Kontakt</a>
     </nav>
-    <a href="#contact" class="text-[11px] font-label font-bold uppercase tracking-[0.15em] text-on-primary bg-primary-container px-5 py-2 hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all cta-main">
+    <a href="{{ $base }}#contact" class="text-[11px] font-label font-bold uppercase tracking-[0.15em] text-on-primary bg-primary-container px-5 py-2 hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all cta-main">
       Bezpłatna Analiza →
     </a>
   </div>
