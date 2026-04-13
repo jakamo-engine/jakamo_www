@@ -1,0 +1,8 @@
+Options -MultiViews -Indexes
+RewriteEngine On
+
+# Jeśli plik istnieje fizycznie, serwuj go bezpośrednio
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Wszystko inne idzie przez index.php
+RewriteRule ^ index.php [L]

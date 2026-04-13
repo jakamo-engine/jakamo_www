@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html class="dark" lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JAKAMO // ARCHITEKT — Koniec z Excelem. Twoja aplikacja webowa.</title>
+<meta name="description" content="Zamieniamy Twoje arkusze Excel na dedykowane aplikacje webowe. CRM, magazyn, system zleceń — skrojone pod Twój biznes."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface-dim": "#131313",
+        "outline": "#859398",
+        "surface-container-lowest": "#0e0e0e",
+        "surface-container-high": "#2a2a2a",
+        "surface-container": "#201f1f",
+        "surface-container-highest": "#353534",
+        "primary-container": "#00d4ff",
+        "background": "#131313",
+        "on-secondary": "#542100",
+        "primary-fixed": "#b4ebff",
+        "on-surface": "#e5e2e1",
+        "secondary": "#ffb68f",
+        "primary": "#a8e8ff",
+        "on-background": "#e5e2e1",
+        "on-surface-variant": "#bbc9cf",
+        "surface-bright": "#3a3939",
+        "outline-variant": "#3c494e",
+        "on-primary": "#003642",
+        "surface": "#131313",
+        "primary-fixed-dim": "#3cd7ff",
+        "surface-variant": "#353534",
+        "surface-container-low": "#1c1b1b",
+        "secondary-container": "#fd7200",
+        "surface-tint": "#3cd7ff",
+      },
+      borderRadius: {
+        "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"
+      },
+      fontFamily: {
+        "headline": ["Space Grotesk"], "body": ["Manrope"], "label": ["Space Grotesk"]
+      }
+    }
+  }
+}
+</script>
+<style>
+  * { box-sizing: border-box; }
+  .scanline {
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,212,255,0.03) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+  }
+  .tech-grid {
+    background-image:
+      linear-gradient(to right, rgba(0,212,255,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,212,255,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .cyber-glow { text-shadow: 0 0 20px rgba(0,212,255,0.5); }
+  .orange-glow { text-shadow: 0 0 20px rgba(253,114,0,0.5); }
+  .corner-bracket { position: relative; }
+  .corner-bracket::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 14px; height: 14px;
+    border-top: 2px solid #00d4ff; border-left: 2px solid #00d4ff;
+  }
+  .corner-bracket::after {
+    content: ''; position: absolute; bottom: 0; right: 0;
+    width: 14px; height: 14px;
+    border-bottom: 2px solid #00d4ff; border-right: 2px solid #00d4ff;
+  }
+  .corner-bracket-orange::before { border-color: #fd7200; }
+  .corner-bracket-orange::after { border-color: #fd7200; }
+
+  /* Ticker animation */
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-inner { animation: ticker 30s linear infinite; white-space: nowrap; }
+
+  /* Fade-in on scroll */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Stat counter glow pulse */
+  @keyframes pulse-glow {
+    0%, 100% { text-shadow: 0 0 10px rgba(0,212,255,0.3); }
+    50% { text-shadow: 0 0 30px rgba(0,212,255,0.8), 0 0 60px rgba(0,212,255,0.3); }
+  }
+  .stat-num { animation: pulse-glow 3s ease-in-out infinite; }
+
+  /* Input focus */
+  input:focus, textarea:focus {
+    outline: none;
+    border-bottom-color: #00d4ff !important;
+    box-shadow: 0 4px 0 -3px rgba(0,212,255,0.4);
+  }
+
+  /* CTA button hover */
+  .cta-main:hover { box-shadow: 0 0 30px rgba(0,212,255,0.5); }
+
+  /* Nav links */
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: ''; position: absolute; bottom: -2px; left: 0;
+    width: 0; height: 1px; background: #00d4ff;
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  /* Excel strikethrough animation */
+  @keyframes strike {
+    to { width: 100%; }
+  }
+  .strike-through {
+    position: relative; display: inline-block;
+  }
+  .strike-through::after {
+    content: ''; position: absolute;
+    left: 0; top: 50%;
+    height: 3px; background: #fd7200;
+    width: 0; animation: strike 1.2s ease forwards 0.8s;
+  }
+
+  /* Module card hover */
+  .module-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .module-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px rgba(0,212,255,0.1);
+  }
+
+  /* Form success */
+  #form-success { display: none; }
+  #form-success.show { display: block; }
+
+  body { min-height: 100dvh; }
+
+  /* Mobile nav */
+  @media (max-width: 768px) {
+    .desktop-nav { display: none; }
+  }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary">
+
+<!-- Scanline overlay -->
+<div class="fixed inset-0 scanline z-30 opacity-60 pointer-events-none"></div>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════ -->
+<header class="fixed top-0 w-full z-50 border-b border-cyan-500/20 bg-[#131313]/90 backdrop-blur-xl">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <!-- Logo mark -->
+      <div class="w-8 h-8 border border-cyan-400/60 flex items-center justify-center relative">
+        <div class="w-3 h-3 bg-cyan-400"></div>
+        <div class="absolute -top-px -left-px w-2 h-2 border-t border-l border-cyan-400"></div>
+      </div>
+      <span class="text-sm font-headline font-bold text-cyan-400 uppercase tracking-[0.15em]">JAKAMO <span class="text-on-surface-variant font-light">//</span> ARCHITEKT</span>
+    </div>
+    <nav class="desktop-nav flex items-center gap-8">
+      <a href="#problem" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Problem</a>
+      <a href="#modules" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Moduły</a>
+      <a href="#process" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Proces</a>
+      <a href="#contact" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Kontakt</a>
+    </nav>
+    <a href="#contact" class="text-[11px] font-label font-bold uppercase tracking-[0.15em] text-on-primary bg-primary-container px-5 py-2 hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all cta-main">
+      Bezpłatna Analiza →
+    </a>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════
+     TICKER BAR
+════════════════════════════════════════════ -->
+<div class="fixed top-16 w-full z-40 bg-surface-container-low border-b border-cyan-500/10 overflow-hidden h-8 flex items-center">
+  <div class="ticker-inner flex items-center gap-12 text-[10px] font-label uppercase tracking-[0.15em] text-on-surface-variant">
+    <span>// JAKAMO_ENGINE_v2.0 //</span>
+    <span class="text-cyan-400">STATUS: OPERATIONAL</span>
+    <span>// EXCEL_REPLACEMENT: ACTIVE //</span>
+    <span class="text-orange-400">LEADY_PRZETWORZONE: 47</span>
+    <span>// APLIKACJE_WDROŻONE: 12 //</span>
+    <span class="text-cyan-400">UPTIME: 99.97%</span>
+    <span>// CZAS_WDROŻENIA: 3-6 TYG //</span>
+    <span>// JAKAMO_ENGINE_v2.0 //</span>
+    <span class="text-cyan-400">STATUS: OPERATIONAL</span>
+    <span>// EXCEL_REPLACEMENT: ACTIVE //</span>
+    <span class="text-orange-400">LEADY_PRZETWORZONE: 47</span>
+    <span>// APLIKACJE_WDROŻONE: 12 //</span>
+    <span class="text-cyan-400">UPTIME: 99.97%</span>
+    <span>// CZAS_WDROŻENIA: 3-6 TYG //</span>
+  </div>
+</div>
+
+<main class="pt-24">
+
+<!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="relative min-h-screen flex flex-col justify-center tech-grid px-6 py-24 overflow-hidden">
+  <!-- Background elements -->
+  <div class="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-surface-container-low/60"></div>
+  <div class="absolute right-0 top-1/4 w-1/2 h-1/2 bg-cyan-400/3 blur-[120px] pointer-events-none"></div>
+  <div class="absolute left-0 bottom-1/4 w-1/3 h-1/3 bg-orange-400/4 blur-[100px] pointer-events-none"></div>
+
+  <!-- Decorative vertical lines -->
+  <div class="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-cyan-400/20 to-transparent hidden md:block"></div>
+  <div class="absolute right-6 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-cyan-400/10 to-transparent hidden md:block"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto w-full">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+
+      <!-- Left: Copy -->
+      <div class="space-y-8">
+        <div class="inline-flex items-center gap-3 px-4 py-2 border border-cyan-500/30 bg-cyan-500/5">
+          <div class="w-1.5 h-1.5 bg-cyan-400 animate-pulse"></div>
+          <span class="text-[10px] font-label uppercase tracking-[0.3em] text-cyan-400">JAKAMO // ARCHITEKT // SYSTEM_INIT</span>
+        </div>
+
+        <h1 class="font-headline font-bold leading-[1.0] uppercase">
+          <span class="text-[clamp(2.5rem,7vw,5.5rem)] text-on-surface block">POŻEGNAJ</span>
+          <span class="text-[clamp(2.5rem,7vw,5.5rem)] block strike-through text-orange-400 orange-glow">ARKUSZE.</span>
+          <span class="text-[clamp(2.5rem,7vw,5.5rem)] text-primary cyber-glow block">POWITAJ</span>
+          <span class="text-[clamp(2.5rem,7vw,5.5rem)] text-primary cyber-glow block">EFEKTYWNOŚĆ.</span>
+        </h1>
+
+        <p class="text-base text-on-surface-variant leading-relaxed max-w-lg">
+          Budujemy dedykowane aplikacje webowe zamiast Excela. Bezpieczne, mobilne i w pełni zautomatyzowane — <strong class="text-on-surface font-medium">architektura przyszłości dla Twojego biznesu.</strong>
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#contact" class="cta-main inline-block bg-primary-container text-on-primary font-label font-bold uppercase tracking-[0.2em] px-8 py-4 text-sm transition-all text-center shadow-[0_0_15px_rgba(0,212,255,0.2)]">
+            ZAMÓW BEZPŁATNĄ ANALIZĘ
+          </a>
+          <a href="#modules" class="inline-block border border-cyan-500/40 text-primary font-label uppercase tracking-[0.15em] px-8 py-4 text-sm hover:bg-cyan-500/5 transition-all text-center">
+            EKSPLORUJ MODUŁY →
+          </a>
+        </div>
+
+        <!-- Stats bar -->
+        <div class="grid grid-cols-3 gap-0 border border-outline-variant/30 bg-surface-container-lowest/60 mt-8">
+          <div class="p-4 border-r border-outline-variant/30">
+            <div class="text-2xl font-headline font-bold text-primary stat-num">98%</div>
+            <div class="text-[10px] font-label uppercase text-on-surface-variant tracking-[0.1em] mt-1">Klientów poleca</div>
+          </div>
+          <div class="p-4 border-r border-outline-variant/30">
+            <div class="text-2xl font-headline font-bold text-primary stat-num">3–6</div>
+            <div class="text-[10px] font-label uppercase text-on-surface-variant tracking-[0.1em] mt-1">Tygodni wdrożenia</div>
+          </div>
+          <div class="p-4">
+            <div class="text-2xl font-headline font-bold text-primary stat-num">∞</div>
+            <div class="text-[10px] font-label uppercase text-on-surface-variant tracking-[0.1em] mt-1">Skalowanie danych</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: HUD mockup -->
+      <div class="relative hidden md:block">
+        <div class="corner-bracket p-6 bg-surface-container-low border border-outline-variant/20 shadow-[0_0_40px_rgba(0,212,255,0.06)]">
+          <!-- HUD header -->
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-cyan-500/10">
+            <span class="text-[10px] font-label uppercase tracking-[0.2em] text-cyan-400">JAKAMO // DASHBOARD_v2</span>
+            <div class="flex gap-2">
+              <div class="w-2 h-2 bg-cyan-400 animate-pulse"></div>
+              <div class="w-2 h-2 bg-orange-400"></div>
+              <div class="w-2 h-2 bg-outline-variant"></div>
+            </div>
+          </div>
+
+          <!-- Fake data rows -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between p-3 bg-surface-container-lowest border-l-2 border-cyan-400">
+              <div>
+                <div class="text-[10px] font-label uppercase text-on-surface-variant tracking-widest">ZAMÓWIENIE // ORD_4471</div>
+                <div class="text-sm font-headline font-bold mt-0.5">Meble Kowalski Sp. z o.o.</div>
+              </div>
+              <span class="text-[10px] font-label uppercase text-cyan-400 bg-cyan-400/10 px-2 py-1">AKTYWNE</span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-surface-container-lowest border-l-2 border-orange-400">
+              <div>
+                <div class="text-[10px] font-label uppercase text-on-surface-variant tracking-widest">MAGAZYN // ALERT</div>
+                <div class="text-sm font-headline font-bold mt-0.5">Dąb Europejski — 12 m³</div>
+              </div>
+              <span class="text-[10px] font-label uppercase text-orange-400 bg-orange-400/10 px-2 py-1">NISKI STAN</span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-surface-container-lowest border-l-2 border-cyan-400/40">
+              <div>
+                <div class="text-[10px] font-label uppercase text-on-surface-variant tracking-widest">KLIENT // CRM_REC</div>
+                <div class="text-sm font-headline font-bold mt-0.5">Tartaki Północ — Oferta</div>
+              </div>
+              <span class="text-[10px] font-label uppercase text-on-surface-variant bg-surface-container-high px-2 py-1">OCZEKUJE</span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-surface-container-lowest border-l-2 border-cyan-400">
+              <div>
+                <div class="text-[10px] font-label uppercase text-on-surface-variant tracking-widest">FAKTURA // INV_2847</div>
+                <div class="text-sm font-headline font-bold mt-0.5">Drewpol — 18 400 PLN</div>
+              </div>
+              <span class="text-[10px] font-label uppercase text-cyan-400 bg-cyan-400/10 px-2 py-1">OPŁACONA</span>
+            </div>
+          </div>
+
+          <!-- Fake mini chart -->
+          <div class="mt-6 pt-4 border-t border-cyan-500/10">
+            <div class="text-[10px] font-label uppercase text-on-surface-variant tracking-widest mb-3">OBRÓT // Q2_2025</div>
+            <div class="flex items-end gap-1 h-16">
+              <div class="flex-1 bg-cyan-400/20" style="height:40%"></div>
+              <div class="flex-1 bg-cyan-400/30" style="height:55%"></div>
+              <div class="flex-1 bg-cyan-400/40" style="height:70%"></div>
+              <div class="flex-1 bg-cyan-400/50" style="height:60%"></div>
+              <div class="flex-1 bg-cyan-400/60" style="height:80%"></div>
+              <div class="flex-1 bg-cyan-400/80" style="height:90%"></div>
+              <div class="flex-1 bg-cyan-400" style="height:100%"></div>
+            </div>
+          </div>
+
+          <!-- vs Excel label -->
+          <div class="mt-4 text-center">
+            <span class="text-[9px] font-label uppercase tracking-[0.2em] text-on-surface-variant">To zamiast: </span>
+            <span class="text-[9px] font-label uppercase tracking-[0.2em] text-orange-400 line-through">EXCEL_v1997.xlsx</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PROBLEM SECTION
+════════════════════════════════════════════ -->
+<section id="problem" class="px-6 py-24 bg-surface-container-low">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="reveal mb-16">
+      <div class="text-[10px] font-label uppercase tracking-[0.3em] text-orange-400 mb-3">// DIAGNOZA_SYSTEMU</div>
+      <h2 class="text-4xl md:text-5xl font-headline font-bold uppercase leading-tight">
+        DLACZEGO<br/><span class="text-orange-400 orange-glow">EXCEL CIĘ OGRANICZA?</span>
+      </h2>
+      <div class="w-20 h-0.5 bg-orange-400 mt-4"></div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-0 reveal">
+
+      <!-- Problem 1 -->
+      <div class="corner-bracket-orange corner-bracket p-8 bg-surface-container-lowest border-b md:border-b-0 md:border-r border-outline-variant/20 group hover:bg-surface-container transition-colors">
+        <div class="w-12 h-12 border border-orange-400/40 flex items-center justify-center mb-6 group-hover:border-orange-400 transition-colors">
+          <svg width="20" height="20" fill="none" stroke="#fd7200" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+          </svg>
+        </div>
+        <div class="text-[10px] font-label uppercase tracking-[0.2em] text-orange-400 mb-2">BŁĄD_KRYTYCZNY // 01</div>
+        <h3 class="text-xl font-headline font-bold uppercase mb-3">Brak Dostępu Mobile</h3>
+        <p class="text-sm text-on-surface-variant leading-relaxed">
+          Twoi pracownicy nie mają dostępu do danych na hali, w magazynie ani u klienta. Excel żyje tylko na biurkowym komputerze.
+        </p>
+        <div class="mt-6 text-[10px] font-label uppercase text-on-surface-variant tracking-widest border-t border-outline-variant/20 pt-4">
+          SYS_RISK: CRITICAL // AXS_ZERO
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="corner-bracket-orange corner-bracket p-8 bg-surface-container-lowest border-b md:border-b-0 md:border-r border-outline-variant/20 group hover:bg-surface-container transition-colors">
+        <div class="w-12 h-12 border border-orange-400/40 flex items-center justify-center mb-6 group-hover:border-orange-400 transition-colors">
+          <svg width="20" height="20" fill="none" stroke="#fd7200" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
+          </svg>
+        </div>
+        <div class="text-[10px] font-label uppercase tracking-[0.2em] text-orange-400 mb-2">BŁĄD_KRYTYCZNY // 02</div>
+        <h3 class="text-xl font-headline font-bold uppercase mb-3">Chaos Danych</h3>
+        <p class="text-sm text-on-surface-variant leading-relaxed">
+          Kilka wersji tego samego pliku, nadpisane formuły, brakujące dane. Jeden błąd pracownika może zniszczyć miesiące pracy.
+        </p>
+        <div class="mt-6 text-[10px] font-label uppercase text-on-surface-variant tracking-widest border-t border-outline-variant/20 pt-4">
+          SYS_RISK: CRITICAL // DATA_CORRUPT
+        </div>
+      </div>
+
+      <!-- Problem 3 -->
+      <div class="corner-bracket-orange corner-bracket p-8 bg-surface-container-lowest group hover:bg-surface-container transition-colors">
+        <div class="w-12 h-12 border border-orange-400/40 flex items-center justify-center mb-6 group-hover:border-orange-400 transition-colors">
+          <svg width="20" height="20" fill="none" stroke="#fd7200" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+        <div class="text-[10px] font-label uppercase tracking-[0.2em] text-orange-400 mb-2">BŁĄD_KRYTYCZNY // 03</div>
+        <h3 class="text-xl font-headline font-bold uppercase mb-3">Zero Automatyzacji</h3>
+        <p class="text-sm text-on-surface-variant leading-relaxed">
+          Ręczne przeliczanie, kopiowanie, wysyłanie raportów. Twoi ludzie marnują godziny dziennie na czynności, które system może robić automatycznie.
+        </p>
+        <div class="mt-6 text-[10px] font-label uppercase text-on-surface-variant tracking-widest border-t border-outline-variant/20 pt-4">
+          SYS_RISK: HIGH // EFFICIENCY_LOSS
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Excel vs JAKAMO comparison -->
+    <div class="mt-16 reveal">
+      <div class="grid md:grid-cols-2 gap-0 border border-outline-variant/30">
+        <div class="p-8 border-b md:border-b-0 md:border-r border-outline-variant/30 bg-surface-container-lowest">
+          <div class="text-[10px] font-label uppercase tracking-[0.2em] text-orange-400 mb-4 flex items-center gap-2">
+            <div class="w-2 h-2 bg-orange-400"></div> TWÓJ OBECNY SYSTEM
+          </div>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-sm text-on-surface-variant">
+              <span class="text-orange-400 mt-0.5 font-bold">✗</span> Excel / arkusze Google — ryzyko utraty danych
+            </li>
+            <li class="flex items-start gap-3 text-sm text-on-surface-variant">
+              <span class="text-orange-400 mt-0.5 font-bold">✗</span> Brak dostępu z telefonu
+            </li>
+            <li class="flex items-start gap-3 text-sm text-on-surface-variant">
+              <span class="text-orange-400 mt-0.5 font-bold">✗</span> Brak uprawnień — każdy widzi wszystko
+            </li>
+            <li class="flex items-start gap-3 text-sm text-on-surface-variant">
+              <span class="text-orange-400 mt-0.5 font-bold">✗</span> Ręczne raportowanie i wysyłka maili
+            </li>
+            <li class="flex items-start gap-3 text-sm text-on-surface-variant">
+              <span class="text-orange-400 mt-0.5 font-bold">✗</span> Brak historii zmian i audytu
+            </li>
+          </ul>
+        </div>
+        <div class="p-8 bg-surface-container-low">
+          <div class="text-[10px] font-label uppercase tracking-[0.2em] text-cyan-400 mb-4 flex items-center gap-2">
+            <div class="w-2 h-2 bg-cyan-400 animate-pulse"></div> JAKAMO ENGINE
+          </div>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-sm text-on-surface">
+              <span class="text-cyan-400 mt-0.5 font-bold">✓</span> Dedykowana aplikacja webowa — dane w chmurze
+            </li>
+            <li class="flex items-start gap-3 text-sm text-on-surface">
+              <span class="text-cyan-400 mt-0.5 font-bold">✓</span> Pełny dostęp mobilny (PWA)
+            </li>
+            <li class="flex items-start gap-3 text-sm text-on-surface">
+              <span class="text-cyan-400 mt-0.5 font-bold">✓</span> Role i uprawnienia dla każdego pracownika
+            </li>
+            <li class="flex items-start gap-3 text-sm text-on-surface">
+              <span class="text-cyan-400 mt-0.5 font-bold">✓</span> Automatyczne raporty, maile, powiadomienia
+            </li>
+            <li class="flex items-start gap-3 text-sm text-on-surface">
+              <span class="text-cyan-400 mt-0.5 font-bold">✓</span> Pełny log zmian i historia operacji
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     MODULES
+════════════════════════════════════════════ -->
+<section id="modules" class="px-6 py-24 tech-grid">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="grid md:grid-cols-2 gap-8 mb-16 items-end reveal">
+      <div>
+        <div class="text-[10px] font-label uppercase tracking-[0.3em] text-cyan-400 mb-3">// MODUŁY_ARCHITEKTONICZNE</div>
+        <h2 class="text-4xl md:text-5xl font-headline font-bold uppercase leading-tight">
+          DEDYKOWANE<br/><span class="text-primary cyber-glow">SOLUTIONS</span>
+        </h2>
+        <div class="w-20 h-0.5 bg-primary mt-4"></div>
+      </div>
+      <p class="text-on-surface-variant leading-relaxed">
+        Każdy moduł jest projektowany pod konkretny biznes. Nie szablony, nie gotowce — architektura skrojona pod Twój proces, skalowalna od pierwszego dnia.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 reveal">
+
+      <!-- Magazyn -->
+      <div class="module-card corner-bracket bg-surface-container-lowest border border-outline-variant/20 p-6">
+        <div class="flex items-center justify-between mb-6">
+          <span class="text-[10px] font-label uppercase tracking-[0.2em] text-primary bg-primary/10 px-3 py-1">MODUŁ_01</span>
+          <div class="w-8 h-8 border border-cyan-400/30 flex items-center justify-center">
+            <svg width="16" height="16" fill="none" stroke="#00d4ff" stroke-width="1.5" viewBox="0 0 24 24">
+              <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="text-3xl font-headline font-bold uppercase mb-3">MAGAZYN</h3>
+        <p class="text-sm text-on-surface-variant mb-6 leading-relaxed">
+          Pełna kontrola stanów magazynowych w czasie rzeczywistym. Integracja z czytnikami kodów kreskowych i automatyzacja przyjęć/wydań.
+        </p>
+        <ul class="space-y-2 mb-6">
+          <li class="flex items-center gap-2 text-xs text-on-surface-variant">
+            <div class="w-1 h-1 bg-cyan-400"></div> Real-time tracking stanów
+          </li>
+          <li class="flex items-center gap-2 text-xs text-on-surface-variant">
+            <div class="w-1 h-1 bg-cyan-400"></div> Automatyczne alerty niskiego stanu
+          </li>
+          <li class="flex items-center gap-2 text-xs text-on-surface-variant">
+            <div class="w-1 h-1 bg-cyan-400"></div> Historia ruchów magazynowych
+          </li>
+        </ul>
+        <div class="grid grid-cols-2 gap-3 border-t border-outline-variant/20 pt-4">
+          <div>
+            <div class="text-[9px] font-label uppercase text-primary tracking-widest">TRACKING</div>
+            <div class="text-xs font-headline font-bold mt-0.5">LIVE_REF</div>
+          </div>
+          <div>
+            <div class="text-[9px] font-label uppercase text-primary tracking-widest">OPTYMALIZACJA</div>
+            <div class="text-xs font-headline font-bold mt-0.5">AI_DRIVEN</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CRM -->
+      <div class="module-card corner-bracket bg-surface-container-lowest border border-outline-variant/20 p-6">
+        <div class="flex items-center justify-between mb-6">
+          <span class="text-[10px] font-label uppercase tracking-[0.2em] text-primary bg-primary/10 px-3 py-1">MODUŁ_02</span>
+          <div class="w-8 h-8 border border-cyan-400/30 flex items-center justify-center">
+            <svg width="16" height="16" fill="none" stroke="#00d4ff" stroke-width="1.5" viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="text-3xl font-headline font-bold uppercase mb-3">CRM</h3>
+        <p class="text-sm text-on-surface-variant mb-6 leading-relaxed">
+          Relacje z klientami pod pełnym nadzorem. Ścieżka sprzedaży krystalicznie czysta. Automatyczne przypomnienia i follow-upy.
+        </p>
+        <ul class="space-y-2 mb-6">
+          <li class="flex items-center gap-2 text-xs text-on-surface-variant">
+            <div class="w-1 h-1 bg-cyan-400"></div> Pipeline sprzedaży z etapami
+          </li>
+          <li class="flex items-center gap-2 text-xs text-on-surface-variant">
+            <div class="w-1 h-1 bg-cyan-400"></div> Historia kontaktów z klientem
+          </li>
+          <li class="flex items-center gap-2 text-xs text-on-surface-variant">
+            <div class="w-1 h-1 bg-cyan-400"></div> Automatyczne maile i powiadomienia
+          </li>
+        </ul>
+        <div class="grid grid-cols-2 gap-3 border-t border-outline-variant/20 pt-4">
+          <div>
+            <div class="text-[9px] font-label uppercase text-primary tracking-widest">KONWERSJA</div>
+            <div class="text-xs font-headline font-bold mt-0.5">MAX_FLOW</div>
+          </div>
+          <div>
+            <div class="text-[9px] font-label uppercase text-primary tracking-widest">INSIGHTS</div>
+            <div class="text-xs font-headline font-bold mt-0.5">DATA_CORE</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom -->
+      <div class="module-card corner-bracket bg-surface-container-lowest border border-outline-variant/20 p-6">
+        <div class="flex items-center justify-between mb-6">
+          <span class="text-[10px] font-label uppercase tracking-[0.2em] text-orange-400 bg-orange-400/10 px-3 py-1">MODUŁ_CUSTOM</span>
+          <div class="w-8 h-8 border border-orange-400/30 flex items-center justify-center">
+            <svg width="16" height="16" fill="none" stroke="#fd7200" stroke-width="1.5" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 1 0 4.93 19.07 10 10 0 0 0 19.07 4.93z"/>
+              <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="text-3xl font-headline font-bold uppercase mb-3">TWÓJ MODUŁ</h3>
+        <p class="text-sm text-on-surface-variant mb-6 leading-relaxed">
+          System zleceń, panel agencji ubezpieczeniowej, platforma B2B — buduję dowolny moduł skrojony pod specyfikę Twojej branży.
+        </p>
+        <ul class="space-y-2 mb-6">
+          <li class="flex items-center gap-2 text-xs text-on-surface-variant">
+            <div class="w-1 h-1 bg-orange-400"></div> Analiza procesów od podstaw
+          </li>
+          <li class="flex items-center gap-2 text-xs text-on-surface-variant">
+            <div class="w-1 h-1 bg-orange-400"></div> Prototyp w 2 tygodnie
+          </li>
+          <li class="flex items-center gap-2 text-xs text-on-surface-variant">
+            <div class="w-1 h-1 bg-orange-400"></div> Pełna dokumentacja i szkolenie
+          </li>
+        </ul>
+        <a href="#contact" class="block w-full text-center border border-orange-400/50 text-orange-400 font-label uppercase tracking-[0.15em] py-3 text-xs hover:bg-orange-400/5 transition-colors">
+          OMÓW SWÓJ PROJEKT →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PROCESS
+════════════════════════════════════════════ -->
+<section id="process" class="px-6 py-24 bg-surface-container-low">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <div class="text-[10px] font-label uppercase tracking-[0.3em] text-cyan-400 mb-3">// STANDARDIZED_DEPLOYMENT_WORKFLOW</div>
+      <h2 class="text-4xl md:text-5xl font-headline font-bold uppercase cyber-glow text-primary">3 KROKI DO TWOJEJ APLIKACJI</h2>
+      <div class="h-0.5 w-20 bg-primary mx-auto mt-4"></div>
+    </div>
+
+    <div class="relative reveal">
+      <!-- Vertical connector -->
+      <div class="absolute left-8 md:left-1/2 top-20 bottom-20 w-px bg-gradient-to-b from-cyan-400/40 via-cyan-400/20 to-transparent -translate-x-1/2 hidden md:block"></div>
+
+      <div class="space-y-16">
+
+        <!-- Step 1 -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-8">
+          <div class="md:w-1/2 md:text-right md:pr-16">
+            <div class="text-[10px] font-label uppercase tracking-[0.3em] text-on-surface-variant mb-2">FAZA_01 // POZNANIE</div>
+            <h3 class="text-2xl font-headline font-bold uppercase mb-3">Analiza Procesów</h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed">
+              Pierwsza rozmowa jest bezpłatna. Mapujemy jak działa Twój Excel — co jest w nim, kto go używa, gdzie są wąskie gardła. Na tej podstawie powstaje brief techniczny.
+            </p>
+          </div>
+          <div class="w-16 h-16 border-2 border-primary flex items-center justify-center text-3xl font-headline font-bold bg-background cyber-glow text-primary flex-shrink-0 mx-auto md:mx-0">
+            01
+          </div>
+          <div class="md:w-1/2 md:pl-16 hidden md:block">
+            <div class="bg-surface-container-lowest border border-outline-variant/30 p-4">
+              <div class="text-[9px] font-label uppercase text-on-surface-variant tracking-widest mb-2">OUTPUT // BRIEF_TECHNICZNY</div>
+              <div class="text-xs text-on-surface">Mapa procesów + szacunek czasowy + propozycja architektury modułów</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-8">
+          <div class="md:w-1/2 md:text-right md:pr-16 md:order-1 order-2">
+            <div class="bg-surface-container-lowest border border-outline-variant/30 p-4 hidden md:block">
+              <div class="text-[9px] font-label uppercase text-on-surface-variant tracking-widest mb-2">OUTPUT // LIVE_PROTOTYPE</div>
+              <div class="text-xs text-on-surface">Działający prototyp z Twoimi danymi — testujesz zanim zapłacisz za całość</div>
+            </div>
+          </div>
+          <div class="w-16 h-16 border-2 border-primary flex items-center justify-center text-3xl font-headline font-bold bg-primary/10 cyber-glow text-primary flex-shrink-0 mx-auto md:mx-0 md:order-2 order-1">
+            02
+          </div>
+          <div class="md:w-1/2 md:pl-16 md:order-3 order-3">
+            <div class="text-[10px] font-label uppercase tracking-[0.3em] text-on-surface-variant mb-2">FAZA_02 // BUDOWA</div>
+            <h3 class="text-2xl font-headline font-bold uppercase mb-3">Prototyp i Iteracja</h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed">
+              Buduję prototyp w 2 tygodnie. Testujesz na prawdziwych danych, zgłaszasz poprawki. Dopiero zatwierdzony prototyp idzie do produkcji.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-8">
+          <div class="md:w-1/2 md:text-right md:pr-16">
+            <div class="text-[10px] font-label uppercase tracking-[0.3em] text-on-surface-variant mb-2">FAZA_03 // WDROŻENIE</div>
+            <h3 class="text-2xl font-headline font-bold uppercase mb-3">Wdrożenie i Szkolenie</h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed">
+              Aplikacja ląduje na Twoim serwerze lub chmurze. Szkolę zespół, dostarczam dokumentację. Wsparcie techniczne przez 3 miesiące po wdrożeniu.
+            </p>
+          </div>
+          <div class="w-16 h-16 border-2 border-orange-400 flex items-center justify-center text-3xl font-headline font-bold bg-background orange-glow text-orange-400 flex-shrink-0 mx-auto md:mx-0">
+            03
+          </div>
+          <div class="md:w-1/2 md:pl-16 hidden md:block">
+            <div class="bg-surface-container-lowest border border-outline-variant/30 p-4">
+              <div class="text-[9px] font-label uppercase text-on-surface-variant tracking-widest mb-2">OUTPUT // EFEKTYWNOŚĆ_2.0</div>
+              <div class="text-xs text-on-surface">Twój zespół pracuje na aplikacji webowej. Excel przechodzi do historii.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SOCIAL PROOF / TRUST
+════════════════════════════════════════════ -->
+<section class="px-6 py-16 border-y border-outline-variant/20">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-10 reveal">
+      <div class="text-[10px] font-label uppercase tracking-[0.3em] text-on-surface-variant">// ZAUFALI_NAM</div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-0 reveal">
+      <div class="p-8 border-b md:border-b-0 md:border-r border-outline-variant/20 text-center">
+        <div class="text-5xl font-headline font-bold text-primary stat-num mb-2">12+</div>
+        <div class="text-[10px] font-label uppercase tracking-[0.15em] text-on-surface-variant">Wdrożonych aplikacji</div>
+      </div>
+      <div class="p-8 border-b md:border-b-0 md:border-r border-outline-variant/20 text-center">
+        <div class="text-5xl font-headline font-bold text-primary stat-num mb-2">3–6</div>
+        <div class="text-[10px] font-label uppercase tracking-[0.15em] text-on-surface-variant">Tygodni od analizy do wdrożenia</div>
+      </div>
+      <div class="p-8 text-center">
+        <div class="text-5xl font-headline font-bold text-primary stat-num mb-2">100%</div>
+        <div class="text-[10px] font-label uppercase tracking-[0.15em] text-on-surface-variant">Projektów ukończonych w terminie</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CONTACT / LEAD FORM
+════════════════════════════════════════════ -->
+<section id="contact" class="px-6 py-24 tech-grid">
+  <div class="max-w-3xl mx-auto">
+
+    <div class="text-center mb-12 reveal">
+      <div class="text-[10px] font-label uppercase tracking-[0.3em] text-cyan-400 mb-3">// INICJUJ_POŁĄCZENIE</div>
+      <h2 class="text-4xl md:text-5xl font-headline font-bold uppercase">
+        GOTOWY NA <span class="text-primary cyber-glow">ZMIANĘ?</span>
+      </h2>
+      <p class="text-sm text-on-surface-variant mt-4 max-w-md mx-auto leading-relaxed">
+        Powiedz mi jak wygląda Twój Excel. Bezpłatna analiza zajmuje 30 minut — po niej wiesz czy i jak możemy Ci pomóc.
+      </p>
+    </div>
+
+    <div class="corner-bracket bg-surface-container p-8 md:p-12 shadow-[0_0_60px_rgba(0,212,255,0.06)] reveal">
+      <div class="flex items-center justify-between mb-8 pb-6 border-b border-outline-variant/20">
+        <div>
+          <div class="text-[10px] font-label uppercase tracking-[0.2em] text-cyan-400">STATUS: READY_TO_DEPLOY</div>
+          <div class="text-xs text-on-surface-variant mt-1">Czas odpowiedzi: &lt; 24h robocze</div>
+        </div>
+        <div class="flex gap-2 items-center">
+          <div class="w-2 h-2 bg-cyan-400 animate-pulse"></div>
+          <span class="text-[10px] font-label uppercase text-cyan-400">ONLINE</span>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div id="lead-form" class="space-y-6">
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="space-y-1">
+            <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">USER_IDENTITY *</label>
+            <input id="f-name" class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all" placeholder="Imię i Nazwisko" type="text"/>
+          </div>
+          <div class="space-y-1">
+            <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">FIRMA *</label>
+            <input id="f-company" class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all" placeholder="Nazwa firmy" type="text"/>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="space-y-1">
+            <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">COMM_PROTOCOL *</label>
+            <input id="f-email" class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all" placeholder="Email" type="email"/>
+          </div>
+          <div class="space-y-1">
+            <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">TEL_LINK</label>
+            <input id="f-phone" class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all" placeholder="Telefon (opcjonalnie)" type="tel"/>
+          </div>
+        </div>
+
+        <!-- Key question for lead qualification -->
+        <div class="space-y-1">
+          <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">DO CZEGO UŻYWASZ TERAZ EXCELA? *</label>
+          <select id="f-use" class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface-variant transition-all appearance-none cursor-pointer">
+            <option value="">— wybierz główne zastosowanie —</option>
+            <option>Magazyn / stany i ruchy towarów</option>
+            <option>CRM / baza klientów i sprzedaż</option>
+            <option>Zlecenia / produkcja / zamówienia</option>
+            <option>Faktury / finanse / rozliczenia</option>
+            <option>HR / ewidencja pracowników</option>
+            <option>Kilka rzeczy naraz</option>
+            <option>Coś innego</option>
+          </select>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant">PROJECT_BRIEF</label>
+          <textarea id="f-msg" class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all resize-none leading-relaxed" placeholder="Opisz swoje wyzwania... ile osób korzysta z arkusza, co jest w nim najtrudniejsze, co chciałbyś usprawnić." rows="4"></textarea>
+        </div>
+
+        <div class="flex items-start gap-3 pt-2">
+          <input id="f-consent" type="checkbox" class="mt-1 w-4 h-4 bg-surface-container-lowest border border-primary/40 rounded-none accent-cyan-400 cursor-pointer flex-shrink-0"/>
+          <label for="f-consent" class="text-xs text-on-surface-variant leading-relaxed cursor-pointer">
+            Wyrażam zgodę na przetwarzanie danych osobowych w celu odpowiedzi na zapytanie. Twoje dane są bezpieczne i nie będą udostępniane osobom trzecim.
+          </label>
+        </div>
+
+        <button id="submit-btn" onclick="submitForm()" class="cta-main w-full bg-primary-container text-on-primary py-4 font-label font-bold uppercase tracking-[0.2em] text-sm shadow-[0_0_15px_rgba(0,212,255,0.2)] transition-all">
+          INICJUJ BEZPŁATNĄ ANALIZĘ →
+        </button>
+
+        <p class="text-center text-[10px] font-label uppercase text-on-surface-variant tracking-widest">
+          Bez zobowiązań // Odpowiedź &lt; 24h // Pierwsza rozmowa gratis
+        </p>
+      </div>
+
+      <!-- Success state -->
+      <div id="form-success" class="text-center py-12">
+        <div class="w-16 h-16 border-2 border-cyan-400 flex items-center justify-center mx-auto mb-6 cyber-glow">
+          <svg width="32" height="32" fill="none" stroke="#00d4ff" stroke-width="2" viewBox="0 0 24 24">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div class="text-[10px] font-label uppercase tracking-[0.3em] text-cyan-400 mb-3">TRANSMISJA_ZAKOŃCZONA // SUCCESS</div>
+        <h3 class="text-2xl font-headline font-bold uppercase mb-3">Wiadomość Odebrana!</h3>
+        <p class="text-sm text-on-surface-variant max-w-sm mx-auto leading-relaxed">
+          Odezwę się w ciągu 24 godzin roboczych. Do usłyszenia wkrótce.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/20 py-12 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-8 mb-10">
+      <div>
+        <div class="text-sm font-headline font-bold text-cyan-400 uppercase tracking-[0.15em] mb-3">JAKAMO // ARCHITEKT</div>
+        <p class="text-xs text-on-surface-variant leading-relaxed">
+          Dedykowane aplikacje webowe zamiast arkuszy Excel. Buduję systemy dla polskich firm, które potrzebują czegoś więcej.
+        </p>
+      </div>
+      <div>
+        <div class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant mb-3">MODUŁY</div>
+        <ul class="space-y-2">
+          <li class="text-xs text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Magazyn</li>
+          <li class="text-xs text-on-surface-variant hover:text-primary transition-colors cursor-pointer">CRM</li>
+          <li class="text-xs text-on-surface-variant hover:text-primary transition-colors cursor-pointer">System Zleceń</li>
+          <li class="text-xs text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Custom</li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant mb-3">KONTAKT</div>
+        <ul class="space-y-2">
+          <li class="text-xs text-on-surface-variant">kontakt@jakamo.pl</li>
+          <li class="text-xs text-on-surface-variant">jakamo.pl</li>
+          <li class="text-xs text-on-surface-variant">Polska // EU</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-outline-variant/20 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant">
+        SYS_REF: JAKAMO_ENGINE_v2.0 // ALL_RIGHTS_RESERVED © 2025
+      </p>
+      <div class="flex gap-6">
+        <a href="#" class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant hover:text-orange-400 transition-colors">Polityka Prywatności</a>
+        <a href="#" class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant hover:text-orange-400 transition-colors">RODO</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Form submit (mock - replace with real endpoint)
+function submitForm() {
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const use = document.getElementById('f-use').value;
+  const consent = document.getElementById('f-consent').checked;
+
+  if (!name || !email || !use || !consent) {
+    alert('Uzupełnij wymagane pola i zaznacz zgodę na przetwarzanie danych.');
+    return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'WYSYŁANIE...';
+  btn.disabled = true;
+
+  // Simulate API call - replace with your endpoint
+  setTimeout(() => {
+    document.getElementById('lead-form').style.display = 'none';
+    document.getElementById('form-success').classList.add('show');
+  }, 1200);
+}
+</script>
+</body>
+</html>
