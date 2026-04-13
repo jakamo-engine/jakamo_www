@@ -1,7 +1,7 @@
 <!-- ═══════════════════════════════════════════
      CONTACT / LEAD FORM
 ════════════════════════════════════════════ -->
-<section id="contact" class="px-6 py-24 tech-grid">
+<section id="contact" class="px-6 py-12 md:py-24 tech-grid">
   <div class="max-w-3xl mx-auto">
 
     <div class="text-center mb-12 reveal">

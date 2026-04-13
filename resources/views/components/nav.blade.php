@@ -4,7 +4,7 @@
 <header class="fixed top-0 w-full z-50 border-b border-cyan-500/20 bg-[#131313]/90 backdrop-blur-xl">
   <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
     <a href="/" class="flex items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 72" fill="none" role="img" aria-label="JAKAMO ARCHITECT" class="h-8 w-auto">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 72" fill="none" role="img" aria-label="JAKAMO ARCHITECT" class="h-6 md:h-8 w-auto">
         <defs>
           <filter id="nav-bracket-glow" x="-80%" y="-80%" width="260%" height="260%">
             <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>

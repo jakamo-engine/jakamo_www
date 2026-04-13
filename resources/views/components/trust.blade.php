@@ -1,7 +1,7 @@
 <!-- ═══════════════════════════════════════════
      SOCIAL PROOF / TRUST
 ════════════════════════════════════════════ -->
-<section class="px-6 py-16 border-y border-outline-variant/20">
+<section class="px-6 py-8 md:py-16 border-y border-outline-variant/20">
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-10 reveal">
       <div class="text-[10px] font-label uppercase tracking-[0.3em] text-on-surface-variant">// ZAUFALI_NAM</div>

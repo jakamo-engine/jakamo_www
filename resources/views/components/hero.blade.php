@@ -1,7 +1,7 @@
 <!-- ═══════════════════════════════════════════
      HERO
 ════════════════════════════════════════════ -->
-<section class="relative min-h-screen flex flex-col justify-center tech-grid px-6 py-24 overflow-hidden">
+<section class="relative min-h-screen flex flex-col justify-center tech-grid px-6 py-12 md:py-24 overflow-hidden">
   <!-- Background elements -->
   <div class="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-surface-container-low/60"></div>
   <div class="absolute right-0 top-1/4 w-1/2 h-1/2 bg-cyan-400/3 blur-[120px] pointer-events-none"></div>

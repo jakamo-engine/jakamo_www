@@ -1,7 +1,7 @@
 <!-- ═══════════════════════════════════════════
      PROBLEM SECTION
 ════════════════════════════════════════════ -->
-<section id="problem" class="px-6 py-24 bg-surface-container-low">
+<section id="problem" class="px-6 py-12 md:py-24 bg-surface-container-low">
   <div class="max-w-7xl mx-auto">
 
     <div class="reveal mb-16">

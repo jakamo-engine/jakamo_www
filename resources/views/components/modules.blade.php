@@ -1,7 +1,7 @@
 <!-- ═══════════════════════════════════════════
      MODULES
 ════════════════════════════════════════════ -->
-<section id="modules" class="px-6 py-24 tech-grid">
+<section id="modules" class="px-6 py-12 md:py-24 tech-grid">
   <div class="max-w-7xl mx-auto">
 
     <div class="grid md:grid-cols-2 gap-8 mb-16 items-end reveal">
