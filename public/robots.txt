@@ -1,2 +1,5 @@
 User-agent: *
-Disallow:
+Disallow: /crm/
+Disallow: /storage/
+
+Sitemap: https://jakamo.pl/sitemap.xml

@@ -68,7 +68,7 @@ class LandingController extends Controller
         $lead = Lead::create($validated);
 
         try {
-            Mail::to(config('mail.from.address'))->send(new NewLeadNotification($lead));
+            Mail::to(config('mail.notify_to', 'kontakt@jakamo.pl'))->send(new NewLeadNotification($lead));
         } catch (\Exception $e) {
             Log::warning('Mail send failed: ' . $e->getMessage());
         }
