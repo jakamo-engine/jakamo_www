@@ -14,7 +14,7 @@ class LandingController extends Controller
     {
         $stats = [
             'apps'  => 3 + Lead::where('status', Lead::STATUS_SUCCESS)->count(),
-            'leads' => 1 + Lead::count(),
+            'leads' => 3 + Lead::count(),
         ];
 
         return view('landing.index', compact('stats'));
