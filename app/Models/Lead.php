@@ -9,13 +9,13 @@ class Lead extends Model
     const STATUS_NEW       = 'new';
     const STATUS_CONTACTED = 'contacted';
     const STATUS_SUCCESS   = 'success';
-    const STATUS_CLOSED    = 'closed';
+    const STATUS_REJECTED  = 'rejected';
 
     const STATUSES = [
         self::STATUS_NEW       => 'Nowy',
         self::STATUS_CONTACTED => 'Kontakt',
         self::STATUS_SUCCESS   => 'Sukces',
-        self::STATUS_CLOSED    => 'Zamknięty',
+        self::STATUS_REJECTED  => 'Odrzucony',
     ];
 
     protected $fillable = [
