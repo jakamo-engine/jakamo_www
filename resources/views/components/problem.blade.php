@@ -12,10 +12,10 @@
       <div class="w-20 h-0.5 bg-orange-400 mt-4"></div>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-0 reveal">
+    <div class="grid md:grid-cols-3 gap-6 reveal">
 
       <!-- Problem 1 -->
-      <div class="corner-bracket-orange corner-bracket p-8 bg-surface-container-lowest border-b md:border-b-0 md:border-r border-outline-variant/20 group hover:bg-surface-container transition-colors">
+      <div class="module-card corner-bracket-orange corner-bracket p-6 bg-surface-container-lowest border border-outline-variant/20 group hover:bg-surface-container transition-colors">
         <div class="w-12 h-12 border border-orange-400/40 flex items-center justify-center mb-6 group-hover:border-orange-400 transition-colors">
           <svg width="20" height="20" fill="none" stroke="#fd7200" stroke-width="1.5" viewBox="0 0 24 24">
             <path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
@@ -32,7 +32,7 @@
       </div>
 
       <!-- Problem 2 -->
-      <div class="corner-bracket-orange corner-bracket p-8 bg-surface-container-lowest border-b md:border-b-0 md:border-r border-outline-variant/20 group hover:bg-surface-container transition-colors">
+      <div class="module-card corner-bracket-orange corner-bracket p-6 bg-surface-container-lowest border border-outline-variant/20 group hover:bg-surface-container transition-colors">
         <div class="w-12 h-12 border border-orange-400/40 flex items-center justify-center mb-6 group-hover:border-orange-400 transition-colors">
           <svg width="20" height="20" fill="none" stroke="#fd7200" stroke-width="1.5" viewBox="0 0 24 24">
             <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
@@ -49,7 +49,7 @@
       </div>
 
       <!-- Problem 3 -->
-      <div class="corner-bracket-orange corner-bracket p-8 bg-surface-container-lowest group hover:bg-surface-container transition-colors">
+      <div class="module-card corner-bracket-orange corner-bracket p-6 bg-surface-container-lowest border border-outline-variant/20 group hover:bg-surface-container transition-colors">
         <div class="w-12 h-12 border border-orange-400/40 flex items-center justify-center mb-6 group-hover:border-orange-400 transition-colors">
           <svg width="20" height="20" fill="none" stroke="#fd7200" stroke-width="1.5" viewBox="0 0 24 24">
             <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
