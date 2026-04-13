@@ -162,22 +162,41 @@
             >{{ old('message') }}</textarea>
           </div>
 
-          <div class="flex items-start gap-3 pt-2">
-            <input
-              id="f-consent"
-              name="consent"
-              type="checkbox"
-              value="1"
-              {{ old('consent') ? 'checked' : '' }}
-              class="mt-1 w-4 h-4 bg-surface-container-lowest border border-primary/40 rounded-none accent-cyan-400 cursor-pointer flex-shrink-0"
-            />
-            <label for="f-consent" class="text-xs text-on-surface-variant leading-relaxed cursor-pointer">
-              Wyrażam zgodę na przetwarzanie danych osobowych w celu odpowiedzi na zapytanie. Twoje dane są bezpieczne i nie będą udostępniane osobom trzecim.
-            </label>
+          <div class="space-y-3 pt-2">
+            <div class="flex items-start gap-3">
+              <input
+                id="f-consent"
+                name="consent"
+                type="checkbox"
+                value="1"
+                {{ old('consent') ? 'checked' : '' }}
+                class="mt-1 w-4 h-4 bg-surface-container-lowest border border-primary/40 rounded-none accent-cyan-400 cursor-pointer flex-shrink-0"
+              />
+              <label for="f-consent" class="text-xs text-on-surface-variant leading-relaxed cursor-pointer">
+                Wyrażam zgodę na przetwarzanie danych osobowych w celu odpowiedzi na zapytanie. Twoje dane są bezpieczne i nie będą udostępniane osobom trzecim.
+              </label>
+            </div>
+            @error('consent')
+              <p class="text-[10px] text-orange-400 font-label uppercase tracking-widest">{{ $message }}</p>
+            @enderror
+
+            <div class="flex items-start gap-3">
+              <input
+                id="f-rodo"
+                name="rodo"
+                type="checkbox"
+                value="1"
+                {{ old('rodo') ? 'checked' : '' }}
+                class="mt-1 w-4 h-4 bg-surface-container-lowest border border-primary/40 rounded-none accent-cyan-400 cursor-pointer flex-shrink-0"
+              />
+              <label for="f-rodo" class="text-xs text-on-surface-variant leading-relaxed cursor-pointer">
+                Zapoznałem się z <a href="#" class="text-primary hover:underline">Polityką Prywatności</a> i <a href="#" class="text-primary hover:underline">klauzulą RODO</a>.
+              </label>
+            </div>
+            @error('rodo')
+              <p class="text-[10px] text-orange-400 font-label uppercase tracking-widest">{{ $message }}</p>
+            @enderror
           </div>
-          @error('consent')
-            <p class="text-[10px] text-orange-400 font-label uppercase tracking-widest -mt-4">{{ $message }}</p>
-          @enderror
 
           <button
             type="submit"
@@ -187,7 +206,7 @@
           </button>
 
           <p class="text-center text-[10px] font-label uppercase text-on-surface-variant tracking-widest">
-            Bez zobowiązań // Odpowiedź &lt; 24h // Pierwsza rozmowa gratis
+            Bez zobowiązań // Odpowiedź &lt; 24h // Pierwsza konsultacja gratis
           </p>
         </form>
       @endif

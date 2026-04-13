@@ -25,6 +25,7 @@ class LandingController extends Controller
             'use_case'   => 'required|string|max:100',
             'message'    => 'nullable|string|max:2000',
             'consent'    => 'required|accepted',
+            'rodo'       => 'required|accepted',
             'excel_file' => 'nullable|file|mimes:xlsx,xls,csv|max:10240',
         ], [
             'name.required'        => 'Podaj imię i nazwisko.',
@@ -34,6 +35,8 @@ class LandingController extends Controller
             'use_case.required'    => 'Wybierz główne zastosowanie Excela.',
             'consent.required'     => 'Wymagana zgoda na przetwarzanie danych.',
             'consent.accepted'     => 'Wymagana zgoda na przetwarzanie danych.',
+            'rodo.required'        => 'Potwierdź zapoznanie się z Polityką Prywatności i RODO.',
+            'rodo.accepted'        => 'Potwierdź zapoznanie się z Polityką Prywatności i RODO.',
             'excel_file.mimes'     => 'Dozwolone formaty: .xlsx, .xls, .csv',
             'excel_file.max'       => 'Plik nie może przekraczać 10 MB.',
         ]);
