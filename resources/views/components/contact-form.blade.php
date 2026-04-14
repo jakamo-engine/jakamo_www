@@ -85,7 +85,7 @@
                 id="f-name"
                 value="{{ old('name') }}"
                 autocomplete="name"
-                class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('name') border-orange-400 @enderror"
+                class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 pl-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('name') border-orange-400 @enderror"
                 placeholder="Imię i Nazwisko"
                 type="text"
               />
@@ -101,7 +101,7 @@
                 id="f-company"
                 value="{{ old('company') }}"
                 autocomplete="organization"
-                class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('company') border-orange-400 @enderror"
+                class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 pl-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('company') border-orange-400 @enderror"
                 placeholder="Nazwa firmy"
                 type="text"
               />
@@ -120,7 +120,7 @@
                 id="f-email"
                 value="{{ old('email') }}"
                 autocomplete="email"
-                class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('email') border-orange-400 @enderror"
+                class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 pl-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('email') border-orange-400 @enderror"
                 placeholder="Email"
                 type="email"
               />
@@ -136,7 +136,7 @@
                 id="f-phone"
                 value="{{ old('phone') }}"
                 autocomplete="tel"
-                class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('phone') border-orange-400 @enderror"
+                class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 pl-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all @error('phone') border-orange-400 @enderror"
                 placeholder="Telefon"
                 type="tel"
               />
@@ -152,7 +152,7 @@
             <select
               name="use_case"
               id="f-use_case"
-              class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface-variant transition-all appearance-none cursor-pointer @error('use_case') border-orange-400 @enderror"
+              class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 pl-3 text-sm text-on-surface-variant transition-all appearance-none cursor-pointer @error('use_case') border-orange-400 @enderror"
             >
               <option value="">— wybierz główne zastosowanie —</option>
               <option {{ old('use_case') == 'Magazyn / stany i ruchy towarów' ? 'selected' : '' }}>Magazyn / stany i ruchy towarów</option>
@@ -206,7 +206,7 @@
             <textarea
               name="message"
               id="f-message"
-              class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all resize-none leading-relaxed"
+              class="w-full bg-surface-container-lowest border-0 border-b border-primary/30 py-3 pl-3 text-sm text-on-surface placeholder-on-surface-variant/40 transition-all resize-none leading-relaxed"
               placeholder="Opisz swoje wyzwania... ile osób korzysta z arkusza, co jest w nim najtrudniejsze, co chciałbyś usprawnić."
               rows="4"
             >{{ old('message') }}</textarea>
