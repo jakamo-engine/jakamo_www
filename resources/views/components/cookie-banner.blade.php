@@ -15,19 +15,54 @@
         Szczegóły w <a href="{{ route('privacy') }}" class="text-primary hover:underline">Polityce Prywatności</a>.
       </p>
     </div>
-    <div class="flex gap-3 flex-shrink-0">
+    <div class="flex flex-col gap-3 flex-shrink-0">
+      <div class="flex gap-3">
+        <button
+          id="cookie-reject"
+          class="text-[11px] font-label uppercase tracking-[0.15em] px-5 py-2 border border-outline-variant/40 text-on-surface-variant hover:border-primary/40 hover:text-on-surface transition-all"
+        >
+          Tylko niezbędne
+        </button>
+        <button
+          id="cookie-accept"
+          class="text-[11px] font-label font-bold uppercase tracking-[0.15em] px-5 py-2 bg-primary-container text-on-primary hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all cta-main"
+        >
+          Akceptuj wszystkie
+        </button>
+      </div>
       <button
-        id="cookie-reject"
-        class="text-[11px] font-label uppercase tracking-[0.15em] px-5 py-2 border border-outline-variant/40 text-on-surface-variant hover:border-primary/40 hover:text-on-surface transition-all"
+        id="cookie-customize-toggle"
+        class="text-[10px] font-label uppercase tracking-[0.15em] text-on-surface-variant hover:text-primary transition-colors text-right"
       >
-        Tylko niezbędne
+        Dostosuj ustawienia ▸
       </button>
-      <button
-        id="cookie-accept"
-        class="text-[11px] font-label font-bold uppercase tracking-[0.15em] px-5 py-2 bg-primary-container text-on-primary hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all cta-main"
-      >
-        Akceptuj wszystkie
-      </button>
+      <!-- Panel dostosowania -->
+      <div id="cookie-customize" class="hidden border border-outline-variant/20 bg-surface-container-lowest p-4 space-y-3">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="text-[10px] font-label uppercase tracking-[0.15em] text-on-surface">Niezbędne</div>
+            <div class="text-[9px] text-on-surface-variant">Sesja, bezpieczeństwo formularza</div>
+          </div>
+          <div class="text-[10px] font-label uppercase text-cyan-400">Zawsze aktywne</div>
+        </div>
+        <div class="border-t border-outline-variant/20"></div>
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="text-[10px] font-label uppercase tracking-[0.15em] text-on-surface">Analityczne</div>
+            <div class="text-[9px] text-on-surface-variant">Google Analytics, GTM</div>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="cookie-analytics-toggle" class="sr-only peer">
+            <div class="w-9 h-5 bg-outline-variant/40 rounded-full peer peer-checked:bg-cyan-400 transition-colors after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-4"></div>
+          </label>
+        </div>
+        <button
+          id="cookie-save-custom"
+          class="w-full text-[11px] font-label font-bold uppercase tracking-[0.15em] px-5 py-2 border border-primary/40 text-primary hover:bg-primary/5 transition-all"
+        >
+          Zapisz ustawienia
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -110,6 +145,22 @@
   document.getElementById('cookie-reject').addEventListener('click', function () {
     saveConsent(false);
     applyConsent(false);
+    hideBanner();
+  });
+
+  // Dostosuj ustawienia
+  var customizeBtn = document.getElementById('cookie-customize-toggle');
+  var customizePanel = document.getElementById('cookie-customize');
+  customizeBtn.addEventListener('click', function () {
+    var isHidden = customizePanel.classList.contains('hidden');
+    customizePanel.classList.toggle('hidden');
+    customizeBtn.textContent = isHidden ? 'Ukryj ustawienia ▾' : 'Dostosuj ustawienia ▸';
+  });
+
+  document.getElementById('cookie-save-custom').addEventListener('click', function () {
+    var analytics = document.getElementById('cookie-analytics-toggle').checked;
+    saveConsent(analytics);
+    applyConsent(analytics);
     hideBanner();
   });
 })();
