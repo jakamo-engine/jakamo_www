@@ -10,8 +10,20 @@
         GOTOWY NA <span class="text-primary cyber-glow">ZMIANĘ?</span>
       </h2>
       <p class="text-sm text-on-surface-variant mt-4 max-w-md mx-auto leading-relaxed">
-        Powiedz mi jak wygląda Twój Excel. Bezpłatna analiza zajmuje 30 minut — po niej wiesz czy i jak możemy Ci pomóc.
+        Powiedz mi jak wygląda Twój Excel. Bezpłatna analiza zajmuje 30 minut — po niej wiesz czy i jak mogę Ci pomóc.
       </p>
+      @php
+        $phone = \App\Models\Setting::get('phone', '+48600952627');
+        $phoneDisplay = trim(str_replace('+48', '', $phone));
+        $phoneDisplay = substr($phoneDisplay, 0, 3) . ' ' . substr($phoneDisplay, 3, 3) . ' ' . substr($phoneDisplay, 6);
+      @endphp
+      <div class="flex flex-wrap items-center justify-center gap-4 mt-4 text-xs text-on-surface-variant">
+        <span class="font-medium text-on-surface">Kamil Jabłoński</span>
+        <span class="text-outline-variant/40">|</span>
+        <a href="tel:{{ $phone }}" class="hover:text-primary transition-colors">tel. {{ $phoneDisplay }}</a>
+        <span class="text-outline-variant/40">|</span>
+        <a href="mailto:kontakt@jakamo.pl" class="hover:text-primary transition-colors">kontakt@jakamo.pl</a>
+      </div>
     </div>
 
     <div class="corner-bracket bg-surface-container p-8 md:p-12 shadow-[0_0_60px_rgba(0,212,255,0.06)] reveal">

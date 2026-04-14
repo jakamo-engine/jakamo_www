@@ -40,11 +40,16 @@
         </ul>
       </div>
       <div>
+        @php
+          $phone = \App\Models\Setting::get('phone', '+48600952627');
+          $phoneDisplay = trim(str_replace('+48', '', $phone));
+          $phoneDisplay = substr($phoneDisplay, 0, 3) . ' ' . substr($phoneDisplay, 3, 3) . ' ' . substr($phoneDisplay, 6);
+        @endphp
         <div class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant mb-3">KONTAKT</div>
         <ul class="space-y-2">
-          <li class="text-xs text-on-surface-variant">kontakt@jakamo.pl</li>
-          <li class="text-xs text-on-surface-variant">jakamo.pl</li>
-          <li class="text-xs text-on-surface-variant">Polska // EU</li>
+          <li class="text-xs text-on-surface font-medium">Kamil Jabłoński</li>
+          <li><a href="tel:{{ $phone }}" class="text-xs text-on-surface-variant hover:text-primary transition-colors">tel. {{ $phoneDisplay }}</a></li>
+          <li><a href="mailto:kontakt@jakamo.pl" class="text-xs text-on-surface-variant hover:text-primary transition-colors">kontakt@jakamo.pl</a></li>
         </ul>
       </div>
     </div>
