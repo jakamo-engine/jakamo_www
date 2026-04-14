@@ -42,8 +42,8 @@
       <div>
         @php
           $phone = \App\Models\Setting::get('phone', '+48600952627');
-          $phoneDisplay = trim(str_replace('+48', '', $phone));
-          $phoneDisplay = substr($phoneDisplay, 0, 3) . ' ' . substr($phoneDisplay, 3, 3) . ' ' . substr($phoneDisplay, 6);
+          $digits = preg_replace('/\D/', '', $phone);
+          $phoneDisplay = '+' . substr($digits, 0, 2) . ' ' . substr($digits, 2, 3) . ' ' . substr($digits, 5, 3) . ' ' . substr($digits, 8);
         @endphp
         <div class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant mb-3">KONTAKT</div>
         <ul class="space-y-2">

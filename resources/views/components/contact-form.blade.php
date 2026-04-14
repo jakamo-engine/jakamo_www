@@ -14,8 +14,8 @@
       </p>
       @php
         $phone = \App\Models\Setting::get('phone', '+48600952627');
-        $phoneDisplay = trim(str_replace('+48', '', $phone));
-        $phoneDisplay = substr($phoneDisplay, 0, 3) . ' ' . substr($phoneDisplay, 3, 3) . ' ' . substr($phoneDisplay, 6);
+        $digits = preg_replace('/\D/', '', $phone);
+        $phoneDisplay = '+' . substr($digits, 0, 2) . ' ' . substr($digits, 2, 3) . ' ' . substr($digits, 5, 3) . ' ' . substr($digits, 8);
       @endphp
       <div class="flex flex-wrap items-center justify-center gap-4 mt-4 text-xs text-on-surface-variant">
         <span class="font-medium text-on-surface">Kamil Jabłoński</span>

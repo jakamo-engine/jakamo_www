@@ -4,8 +4,8 @@
 @php
   $phone = \App\Models\Setting::get('phone', '+48600952627');
   $whatsappNum = \App\Models\Setting::get('whatsapp', '+48600952627');
-  $phoneDisplay = trim(str_replace('+48', '', $phone));
-  $phoneDisplay = substr($phoneDisplay, 0, 3) . ' ' . substr($phoneDisplay, 3, 3) . ' ' . substr($phoneDisplay, 6);
+  $digits = preg_replace('/\D/', '', $phone);
+  $phoneDisplay = '+' . substr($digits, 0, 2) . ' ' . substr($digits, 2, 3) . ' ' . substr($digits, 5, 3) . ' ' . substr($digits, 8);
   $waDigits = preg_replace('/\D/', '', $whatsappNum);
   $whatsapp = 'https://wa.me/' . $waDigits . '?text=' . urlencode('Cześć, chciałbym dowiedzieć się więcej o systemie JAKAMO.');
 @endphp
