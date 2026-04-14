@@ -39,8 +39,8 @@
       <a href="{{ $base }}#contact" class="nav-link text-[11px] font-label uppercase tracking-[0.12em] text-on-surface-variant hover:text-primary transition-colors">Kontakt</a>
     </nav>
     <a href="{{ $base }}#contact" class="text-[11px] font-label font-bold uppercase tracking-[0.15em] text-on-primary bg-primary-container px-3 md:px-5 py-2 hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all cta-main whitespace-nowrap">
-      <span class="md:hidden">Analiza →</span>
-      <span class="hidden md:inline">Bezpłatna Analiza →</span>
+      <span class="md:hidden">Napisz →</span>
+      <span class="hidden md:inline">Porozmawiajmy →</span>
     </a>
   </div>
 </header>
