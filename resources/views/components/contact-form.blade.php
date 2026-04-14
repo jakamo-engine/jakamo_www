@@ -247,7 +247,7 @@
             type="submit"
             class="cta-main w-full bg-primary-container text-on-primary py-4 font-label font-bold uppercase tracking-[0.2em] text-sm shadow-[0_0_15px_rgba(0,212,255,0.2)] transition-all"
           >
-            <span id="btn-label">INICJUJ BEZPŁATNĄ ANALIZĘ →</span>
+            <span id="btn-label">SPRAWDŹ, CZY TO MA SENS DLA TWOJEJ FIRMY →</span>
             <span id="btn-sending" class="hidden">WYSYŁANIE...</span>
           </button>
 

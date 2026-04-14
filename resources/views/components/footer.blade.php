@@ -27,7 +27,7 @@
           </svg>
         </div>
         <p class="text-xs text-on-surface-variant leading-relaxed">
-          Dedykowane aplikacje webowe zamiast Excela. Buduję systemy dla polskich firm, które potrzebują czegoś więcej.
+          Buduję systemy dla firm, które chcą odejść od Excela – od magazynu po zarządzanie klientami.
         </p>
       </div>
       <div>

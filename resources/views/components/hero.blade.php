@@ -22,19 +22,19 @@
         </div>
 
         <h1 class="font-headline font-bold leading-[1.0] uppercase">
-          <span class="text-[clamp(2.5rem,7vw,5.5rem)] text-on-surface block">POŻEGNAJ</span>
-          <span class="text-[clamp(2.5rem,7vw,5.5rem)] block strike-through text-orange-400 orange-glow">EXCEL.</span>
-          <span class="text-[clamp(2.5rem,7vw,5.5rem)] text-primary cyber-glow block">POWITAJ</span>
-          <span class="text-[clamp(2.5rem,7vw,5.5rem)] text-primary cyber-glow block">EFEKTYWNOŚĆ.</span>
+          <span class="text-[clamp(2.5rem,7vw,5.5rem)] text-on-surface block">KONIEC Z</span>
+          <span class="text-[clamp(2.5rem,7vw,5.5rem)] block strike-through text-orange-400 orange-glow">EXCELEM.</span>
+          <span class="text-[clamp(2.5rem,7vw,5.5rem)] text-primary cyber-glow block">CZAS NA</span>
+          <span class="text-[clamp(2.5rem,7vw,5.5rem)] text-primary cyber-glow block">SYSTEM.</span>
         </h1>
 
         <p class="text-base text-on-surface-variant leading-relaxed max-w-lg">
-          Buduję dedykowane aplikacje webowe zamiast Excela. Bezpieczne, mobilne i w pełni zautomatyzowane — <strong class="text-on-surface font-medium">architektura przyszłości dla Twojego biznesu.</strong>
+          Buduję systemy dla firm, które chcą odejść od Excela – od magazynu po zarządzanie klientami. Porządkuję dane, eliminuję błędy i daję Ci pełną kontrolę – <strong class="text-on-surface font-medium">bez utraty danych i bez stresu.</strong>
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4">
           <a href="#contact" class="cta-main inline-block bg-primary-container text-on-primary font-label font-bold uppercase tracking-[0.2em] px-8 py-4 text-sm transition-all text-center shadow-[0_0_15px_rgba(0,212,255,0.2)]">
-            ZAMÓW BEZPŁATNĄ ANALIZĘ
+            ZOBACZ JAK TO DZIAŁA
           </a>
           <a href="#modules" class="inline-block border border-cyan-500/40 text-primary font-label uppercase tracking-[0.15em] px-8 py-4 text-sm hover:bg-cyan-500/5 transition-all text-center">
             EKSPLORUJ MODUŁY →

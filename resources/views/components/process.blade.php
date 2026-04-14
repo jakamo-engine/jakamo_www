@@ -21,7 +21,7 @@
             <div class="text-[10px] font-label uppercase tracking-[0.3em] text-on-surface-variant mb-2">FAZA_01 // POZNANIE</div>
             <h3 class="text-2xl font-headline font-bold uppercase mb-3">Analiza Procesów</h3>
             <p class="text-sm text-on-surface-variant leading-relaxed">
-              Pierwsza konsultacja jest bezpłatna. Mapujemy jak działa Twój Excel — co jest w nim, kto go używa, gdzie są wąskie gardła. Na tej podstawie powstaje brief techniczny.
+              Przenoszę Twoje dane z Excela — nic nie tracisz. Mapuję jak działa Twój Excel, kto go używa i gdzie są wąskie gardła. Na tej podstawie powstaje brief techniczny.
             </p>
           </div>
           <div class="w-16 h-16 border-2 border-primary flex items-center justify-center text-3xl font-headline font-bold bg-background cyber-glow text-primary flex-shrink-0 mx-auto md:mx-0 order-1 md:order-2">

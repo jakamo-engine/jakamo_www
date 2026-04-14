@@ -31,7 +31,7 @@
         </div>
         <h3 class="text-3xl font-headline font-bold uppercase mb-3">MAGAZYN</h3>
         <p class="text-sm text-on-surface-variant mb-6 leading-relaxed">
-          Pełna kontrola stanów magazynowych w czasie rzeczywistym. Automatyzacja przyjęć i wydań, alerty niskiego stanu i historia ruchów w jednym miejscu.
+          Zawsze wiesz co masz na stanie — bez sprawdzania kilku plików. Automatyczne alerty niskiego stanu i historia każdego ruchu w jednym miejscu.
         </p>
         <ul class="space-y-2 mb-6">
           <li class="flex items-center gap-2 text-xs text-on-surface-variant">
@@ -68,7 +68,7 @@
         </div>
         <h3 class="text-3xl font-headline font-bold uppercase mb-3">CRM</h3>
         <p class="text-sm text-on-surface-variant mb-6 leading-relaxed">
-          Relacje z klientami pod pełnym nadzorem. Ścieżka sprzedaży krystalicznie czysta. Automatyczne przypomnienia i follow-upy.
+          Wszystkie kontakty, zamówienia i rozmowy w jednym miejscu. Automatyczne przypomnienia, żeby żaden klient nie czekał.
         </p>
         <ul class="space-y-2 mb-6">
           <li class="flex items-center gap-2 text-xs text-on-surface-variant">
@@ -106,7 +106,7 @@
         </div>
         <h3 class="text-3xl font-headline font-bold uppercase mb-3">TWÓJ MODUŁ</h3>
         <p class="text-sm text-on-surface-variant mb-6 leading-relaxed">
-          System zleceń, panel agencji ubezpieczeniowej, platforma B2B — buduję dowolny moduł skrojony pod specyfikę Twojej branży.
+          Dopasowuję system dokładnie do tego, jak działa Twoja firma — nie odwrotnie. System zleceń, panel B2B, cokolwiek potrzebujesz.
         </p>
         <ul class="space-y-2 mb-6">
           <li class="flex items-center gap-2 text-xs text-on-surface-variant">

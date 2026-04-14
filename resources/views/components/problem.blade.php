@@ -7,7 +7,7 @@
     <div class="reveal mb-16">
       <div class="text-[10px] font-label uppercase tracking-[0.3em] text-orange-400 mb-3">// DIAGNOZA_SYSTEMU</div>
       <h2 class="text-4xl md:text-5xl font-headline font-bold uppercase leading-tight">
-        DLACZEGO<br/><span class="text-orange-400 orange-glow">EXCEL CIĘ OGRANICZA?</span>
+        EXCEL NIE NADĄŻA,<br/><span class="text-orange-400 orange-glow">GDY FIRMA ZACZYNA ROSNĄĆ</span>
       </h2>
       <div class="w-20 h-0.5 bg-orange-400 mt-4"></div>
     </div>
@@ -22,9 +22,9 @@
           </svg>
         </div>
         <div class="text-[10px] font-label uppercase tracking-[0.2em] text-orange-400 mb-2">BŁĄD_KRYTYCZNY // 01</div>
-        <h3 class="text-xl font-headline font-bold uppercase mb-3">Brak Dostępu Mobile</h3>
+        <h3 class="text-xl font-headline font-bold uppercase mb-3">Nie Wiesz Ile Masz Na Stanie</h3>
         <p class="text-sm text-on-surface-variant leading-relaxed">
-          Twoi pracownicy nie mają dostępu do danych na hali, w magazynie ani u klienta. Excel żyje tylko na biurkowym komputerze.
+          Dane są w kilku plikach, a każdy pokazuje coś innego. Zamiast odpowiedzi — masz kolejne pytania.
         </p>
         <div class="mt-6 text-[10px] font-label uppercase text-on-surface-variant tracking-widest border-t border-outline-variant/20 pt-4">
           SYS_RISK: CRITICAL // AXS_ZERO
@@ -39,9 +39,9 @@
           </svg>
         </div>
         <div class="text-[10px] font-label uppercase tracking-[0.2em] text-orange-400 mb-2">BŁĄD_KRYTYCZNY // 02</div>
-        <h3 class="text-xl font-headline font-bold uppercase mb-3">Chaos Danych</h3>
+        <h3 class="text-xl font-headline font-bold uppercase mb-3">Pracownicy Nadpisują Sobie Dane</h3>
         <p class="text-sm text-on-surface-variant leading-relaxed">
-          Kilka wersji tego samego pliku, nadpisane formuły, brakujące dane. Jeden błąd pracownika może zniszczyć miesiące pracy.
+          Jeden błąd i tracisz kontrolę nad magazynem. Nadpisane formuły, brakujące wiersze — bez możliwości cofnięcia.
         </p>
         <div class="mt-6 text-[10px] font-label uppercase text-on-surface-variant tracking-widest border-t border-outline-variant/20 pt-4">
           SYS_RISK: CRITICAL // DATA_CORRUPT
@@ -56,9 +56,9 @@
           </svg>
         </div>
         <div class="text-[10px] font-label uppercase tracking-[0.2em] text-orange-400 mb-2">BŁĄD_KRYTYCZNY // 03</div>
-        <h3 class="text-xl font-headline font-bold uppercase mb-3">Zero Automatyzacji</h3>
+        <h3 class="text-xl font-headline font-bold uppercase mb-3">Klienci Czekają, Bo Ty Szukasz Danych</h3>
         <p class="text-sm text-on-surface-variant leading-relaxed">
-          Ręczne przeliczanie, kopiowanie, wysyłanie raportów. Twoi pracownicy marnują godziny dziennie na czynności, które system może robić automatycznie.
+          Zamiast decyzji — ciągłe poprawianie Excela. Tracisz czas na sprawdzanie zamiast działać i obsługiwać klientów.
         </p>
         <div class="mt-6 text-[10px] font-label uppercase text-on-surface-variant tracking-widest border-t border-outline-variant/20 pt-4">
           SYS_RISK: HIGH // EFFICIENCY_LOSS
@@ -79,7 +79,7 @@
               <span class="text-orange-400 mt-0.5 font-bold">✗</span> Excel / arkusze Google — ryzyko utraty danych
             </li>
             <li class="flex items-start gap-3 text-sm text-on-surface-variant">
-              <span class="text-orange-400 mt-0.5 font-bold">✗</span> Brak dostępu z telefonu
+              <span class="text-orange-400 mt-0.5 font-bold">✗</span> Dane tylko na komputerze w biurze
             </li>
             <li class="flex items-start gap-3 text-sm text-on-surface-variant">
               <span class="text-orange-400 mt-0.5 font-bold">✗</span> Brak uprawnień — każdy widzi wszystko
@@ -88,7 +88,7 @@
               <span class="text-orange-400 mt-0.5 font-bold">✗</span> Ręczne raportowanie i wysyłka maili
             </li>
             <li class="flex items-start gap-3 text-sm text-on-surface-variant">
-              <span class="text-orange-400 mt-0.5 font-bold">✗</span> Brak historii zmian i audytu
+              <span class="text-orange-400 mt-0.5 font-bold">✗</span> Ktoś coś zmienił — nie wiesz kto i kiedy
             </li>
           </ul>
         </div>
@@ -98,10 +98,10 @@
           </div>
           <ul class="space-y-3">
             <li class="flex items-start gap-3 text-sm text-on-surface">
-              <span class="text-cyan-400 mt-0.5 font-bold">✓</span> Dedykowana aplikacja webowa — dane w chmurze
+              <span class="text-cyan-400 mt-0.5 font-bold">✓</span> Twoje dane bezpiecznie w jednym miejscu
             </li>
             <li class="flex items-start gap-3 text-sm text-on-surface">
-              <span class="text-cyan-400 mt-0.5 font-bold">✓</span> Pełny dostęp mobilny (PWA)
+              <span class="text-cyan-400 mt-0.5 font-bold">✓</span> Dostęp z telefonu, tabletu, z dowolnego miejsca
             </li>
             <li class="flex items-start gap-3 text-sm text-on-surface">
               <span class="text-cyan-400 mt-0.5 font-bold">✓</span> Role i uprawnienia dla każdego pracownika
@@ -110,7 +110,7 @@
               <span class="text-cyan-400 mt-0.5 font-bold">✓</span> Automatyczne raporty, maile, powiadomienia
             </li>
             <li class="flex items-start gap-3 text-sm text-on-surface">
-              <span class="text-cyan-400 mt-0.5 font-bold">✓</span> Pełny log zmian i historia operacji
+              <span class="text-cyan-400 mt-0.5 font-bold">✓</span> Każda zmiana zapisana — wiesz kto, co i kiedy
             </li>
           </ul>
         </div>
