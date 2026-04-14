@@ -57,6 +57,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 @yield('content')
 
+<x-floating-contact />
 <x-cookie-banner />
 
 </body>
