@@ -77,6 +77,19 @@ if (excelInput && fileLabel) {
     resetAutoplay();
 })();
 
+// Ticker — seamless loop
+(function() {
+    const track = document.querySelector('.ticker-track');
+    const segment = document.querySelector('.ticker-segment');
+    if (!track || !segment) return;
+
+    const w = segment.offsetWidth;
+    const style = document.createElement('style');
+    style.textContent = `@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-${w}px)}}`;
+    document.head.appendChild(style);
+    track.style.animation = `ticker 20s linear infinite`;
+})();
+
 // Smooth scroll for nav links
 document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {

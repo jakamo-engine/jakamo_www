@@ -51,16 +51,13 @@ html {
     --radius-full: 9999px;
 
     /* Animations */
-    --animate-ticker: ticker 30s linear infinite;
+    /* ticker animation set by JS */
     --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
     --animate-strike: strike 1.2s ease forwards 0.8s;
 }
 
 /* ─── Keyframes ─────────────────────────────────────────────── */
-@keyframes ticker {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
+/* ticker keyframes ustawiane dynamicznie przez JS */
 
 @keyframes pulse-glow {
     0%, 100% { text-shadow: 0 0 10px rgba(0, 212, 255, 0.3); }
@@ -108,7 +105,11 @@ html {
 .corner-bracket-orange::before { border-color: #fd7200; }
 .corner-bracket-orange::after  { border-color: #fd7200; }
 
-.ticker-inner { animation: var(--animate-ticker); white-space: nowrap; }
+.ticker-track {
+    white-space: nowrap;
+    will-change: transform;
+}
+.ticker-segment { flex-shrink: 0; }
 
 .reveal {
     opacity: 0;

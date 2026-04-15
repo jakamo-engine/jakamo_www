@@ -49,20 +49,17 @@
      TICKER BAR
 ════════════════════════════════════════════ -->
 <div class="fixed top-16 w-full z-40 bg-surface-container-low border-b border-cyan-500/10 overflow-hidden h-8 flex items-center">
-  <div class="ticker-inner flex items-center gap-12 text-[10px] font-label uppercase tracking-[0.15em] text-on-surface-variant">
-    <span>// JAKAMO_ENGINE_v2.0 //</span>
-    <span class="text-cyan-400">STATUS: OPERATIONAL</span>
-    <span>// EXCEL_REPLACEMENT: ACTIVE //</span>
-    <span class="text-orange-400">LEADY_PRZETWORZONE: {{ $stats['leads'] ?? 5 }}</span>
-    <span>// APLIKACJE_WDROŻONE: {{ $stats['apps'] ?? 5 }} //</span>
-    <span class="text-cyan-400">UPTIME: 99.97%</span>
-    <span>// CZAS_WDROŻENIA: 3-6 TYG //</span>
-    <span>// JAKAMO_ENGINE_v2.0 //</span>
-    <span class="text-cyan-400">STATUS: OPERATIONAL</span>
-    <span>// EXCEL_REPLACEMENT: ACTIVE //</span>
-    <span class="text-orange-400">LEADY_PRZETWORZONE: {{ $stats['leads'] ?? 5 }}</span>
-    <span>// APLIKACJE_WDROŻONE: {{ $stats['apps'] ?? 5 }} //</span>
-    <span class="text-cyan-400">UPTIME: 99.97%</span>
-    <span>// CZAS_WDROŻENIA: 3-6 TYG //</span>
+  <div class="ticker-track flex">
+    @for($i = 0; $i < 3; $i++)
+    <div class="ticker-segment flex items-center gap-12 text-[10px] font-label uppercase tracking-[0.15em] text-on-surface-variant whitespace-nowrap px-6">
+      <span>// JAKAMO_ENGINE_v2.0 //</span>
+      <span class="text-cyan-400">STATUS: OPERATIONAL</span>
+      <span>// EXCEL_REPLACEMENT: ACTIVE //</span>
+      <span class="text-orange-400">LEADY_PRZETWORZONE: {{ $stats['leads'] ?? 5 }}</span>
+      <span>// APLIKACJE_WDROŻONE: {{ $stats['apps'] ?? 5 }} //</span>
+      <span class="text-cyan-400">UPTIME: 99.97%</span>
+      <span>// CZAS_WDROŻENIA: 3-6 TYG //</span>
+    </div>
+    @endfor
   </div>
 </div>
