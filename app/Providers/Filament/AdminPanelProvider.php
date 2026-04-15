@@ -29,6 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('crm')
             ->login()
+            ->homeUrl('/crm/leads')
             ->colors([
                 'primary' => Color::Cyan,
             ])
