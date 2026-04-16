@@ -1,5 +1,11 @@
 User-agent: *
 Disallow: /crm/
 Disallow: /storage/
+Disallow: /demo/
+Disallow: /dev/
+Disallow: /dom/
+Disallow: /drewno/
+Disallow: /nowigo/
+Disallow: /panel/
 
 Sitemap: https://jakamo.pl/sitemap.xml
