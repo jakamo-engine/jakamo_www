@@ -7,5 +7,7 @@ Disallow: /dom/
 Disallow: /drewno/
 Disallow: /nowigo/
 Disallow: /panel/
+Disallow: /landing/
+Disallow: /bhubezpieczenia/
 
 Sitemap: https://jakamo.pl/sitemap.xml
