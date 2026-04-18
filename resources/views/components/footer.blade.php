@@ -50,6 +50,7 @@
           <li class="text-xs text-on-surface font-medium">Kamil Jabłoński</li>
           <li><a href="tel:{{ $phone }}" class="text-xs text-on-surface-variant hover:text-primary transition-colors">tel. {{ $phoneDisplay }}</a></li>
           <li><a href="mailto:kontakt@jakamo.pl" class="text-xs text-on-surface-variant hover:text-primary transition-colors">kontakt@jakamo.pl</a></li>
+          <li class="text-xs text-on-surface-variant">NIP PL7772300065</li>
         </ul>
       </div>
     </div>
